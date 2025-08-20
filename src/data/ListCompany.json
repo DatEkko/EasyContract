@@ -1,0 +1,18 @@
+[
+    {
+        "tenCongTy": "Công ty TNHH ABC",
+        "daiDien": "Nguyễn Văn A",
+        "chucVu": "Giám đốc",
+        "maNganHang": "VCB123456",
+        "maSoThue": "0101234567",
+        "diaChi": "123 Đường A, Quận B, Hà Nội"
+    },
+    {
+        "tenCongTy": "Công ty Cổ phần XYZ",
+        "daiDien": "Trần Thị B",
+        "chucVu": "Tổng giám đốc",
+        "maNganHang": "ACB987654",
+        "maSoThue": "0309876543",
+        "diaChi": "456 Đường C, Quận D, TP. HCM"
+    }
+]

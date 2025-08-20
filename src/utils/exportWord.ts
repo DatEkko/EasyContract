@@ -1,3 +1,5 @@
+
+import { PartyInfo } from "@/components/DetailTemplate/types";
 import { Document, Packer, Paragraph, Table, TableCell, TableRow, TextRun, WidthType, AlignmentType } from "docx";
 import { saveAs } from "file-saver";
 
@@ -36,10 +38,65 @@ const makeRows = (rows: RowData[]) => [
     ),
 ];
 
+const makePartyInfo = (title: string, info: PartyInfo) => {
+    return new Table({
+        width: { size: 100, type: WidthType.PERCENTAGE },
+        rows: [
+            new TableRow({
+                children: [
+                    new TableCell({
+                        children: [new Paragraph({ children: [new TextRun({ text: title, bold: true })] })],
+                        columnSpan: 2,
+                    }),
+                ],
+            }),
+            new TableRow({
+                children: [
+                    new TableCell({ children: [new Paragraph("Tên công ty")] }),
+                    new TableCell({ children: [new Paragraph(info.tenCongTy)] }),
+                ],
+            }),
+            new TableRow({
+                children: [
+                    new TableCell({ children: [new Paragraph("Đại diện")] }),
+                    new TableCell({ children: [new Paragraph(info.daiDien)] }),
+                ],
+            }),
+            new TableRow({
+                children: [
+                    new TableCell({ children: [new Paragraph("Chức vụ")] }),
+                    new TableCell({ children: [new Paragraph(info.chucVu)] }),
+                ],
+            }),
+            new TableRow({
+                children: [
+                    new TableCell({ children: [new Paragraph("Mã số thuế")] }),
+                    new TableCell({ children: [new Paragraph(info.maSoThue)] }),
+                ],
+            }),
+            new TableRow({
+                children: [
+                    new TableCell({ children: [new Paragraph("Mã ngân hàng")] }),
+                    new TableCell({ children: [new Paragraph(info.maNganHang)] }),
+                ],
+            }),
+            new TableRow({
+                children: [
+                    new TableCell({ children: [new Paragraph("Địa chỉ")] }),
+                    new TableCell({ children: [new Paragraph(info.diaChi)] }),
+                ],
+            }),
+        ],
+    });
+};
+
+
 export const exportToWord = async (
     templateId: string,
     rows: RowData[],
-    tongHopDong: number
+    tongHopDong: number,
+    benA: PartyInfo,
+    benB: PartyInfo
 ) => {
     let children: (Paragraph | Table)[] = [];
 
@@ -51,6 +108,12 @@ export const exportToWord = async (
                     children: [new TextRun({ text: "HỢP ĐỒNG MUA BÁN", bold: true, size: 40 })],
                 }),
                 new Paragraph({ text: `ID: ${templateId}` }),
+
+                makePartyInfo("Bên A", benA),
+                new Paragraph({ text: "" }), // dòng trống
+                makePartyInfo("Bên B", benB),
+                new Paragraph({ text: "" }),
+
                 new Table({
                     width: { size: 100, type: WidthType.PERCENTAGE },
                     rows: makeRows(rows),
@@ -67,7 +130,12 @@ export const exportToWord = async (
                     alignment: AlignmentType.CENTER,
                     children: [new TextRun({ text: "ĐỀ NGHỊ THANH TOÁN", bold: true, size: 40 })],
                 }),
-                new Paragraph({ text: `Kính gửi: Phòng kế toán` }),
+
+                makePartyInfo("Bên A", benA),
+                new Paragraph({ text: "" }), // dòng trống
+                makePartyInfo("Bên B", benB),
+                new Paragraph({ text: "" }),
+
                 new Table({
                     width: { size: 100, type: WidthType.PERCENTAGE },
                     rows: makeRows(rows),

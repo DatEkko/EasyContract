@@ -3,7 +3,6 @@ type TemplateProps = {
         id: string
         name: string
     }
-
 }
 
 const Template = (props: TemplateProps) => {

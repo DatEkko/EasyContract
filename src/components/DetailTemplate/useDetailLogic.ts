@@ -1,12 +1,5 @@
 import { useState } from "react";
-
-export interface RowData {
-    id: string;
-    ten: string;
-    soLuong: number | "";
-    donViTinh: string;
-    soTien: number | "";
-}
+import { RowData } from "./types";
 
 export const useDetailLogic = () => {
     const [errors, setErrors] = useState<Record<string, string>>({});

@@ -1,9 +1,11 @@
 "use client";
-import { use } from "react";
+import { use, useState } from "react";
 import ListTemplate from "@/data/ListTemplate.json";
 import TableRows from "@/components/DetailTemplate/TableRows";
 import { useDetailLogic } from "@/components/DetailTemplate/useDetailLogic";
 import { exportToWord } from "@/utils/exportWord";
+import PartyInfoForm from "@/components/DetailTemplate/PartyInfoForm";
+import { emptyPartyInfo, PartyInfo } from "@/components/DetailTemplate/types";
 
 interface DetailPageProps {
     params: Promise<{ template: string }>;
@@ -12,6 +14,8 @@ interface DetailPageProps {
 const DetailTemplate = ({ params }: DetailPageProps) => {
     const { template } = use(params);
     const currentTemplate = ListTemplate.find((item) => item.id === template);
+    const [benA, setBenA] = useState<PartyInfo>(emptyPartyInfo);
+    const [benB, setBenB] = useState<PartyInfo>(emptyPartyInfo);
 
     const { rows, errors, handleChange, addRow, deleteRow, tongHopDong } = useDetailLogic();
 
@@ -23,6 +27,11 @@ const DetailTemplate = ({ params }: DetailPageProps) => {
         <div className="text-center px-10">
             <div className="text-5xl mt-10">Soạn thảo {currentTemplate.name}</div>
             <p className="mb-10">ID: {currentTemplate.id}</p>
+
+            <div className="flex justify-center gap-10">
+                <PartyInfoForm label="Bên A" value={benA} onChange={setBenA} />
+                <PartyInfoForm label="Bên B" value={benB} onChange={setBenB} />
+            </div>
 
             <table className="w-full border border-collapse text-lg">
                 <thead>
@@ -44,13 +53,13 @@ const DetailTemplate = ({ params }: DetailPageProps) => {
                 <strong>Tổng cộng: {tongHopDong.toLocaleString()} đ</strong>
             </div>
 
-            <div className="flex gap-3 justify-center mt-5">
-                <button onClick={addRow} className="px-4 py-2 bg-blue-500 text-white rounded">
+            <div className="flex gap-3 justify-center mt-5 mb-10">
+                <button onClick={addRow} className="px-4 py-2 bg-blue-500 text-white rounded cursor-pointer">
                     Thêm dòng
                 </button>
                 <button
-                    onClick={() => exportToWord(currentTemplate.id, rows, tongHopDong)}
-                    className="px-4 py-2 bg-green-600 text-white rounded"
+                    onClick={() => exportToWord(currentTemplate.id, rows, tongHopDong, benA, benB)}
+                    className="px-4 py-2 bg-green-600 text-white rounded cursor-pointer"
                 >
                     Xuất file Word
                 </button>

@@ -1,4 +1,5 @@
-import { RowData } from "./useDetailLogic";
+import { RowData } from "./types";
+import units from "@/data/Unit.json";
 
 interface Props {
     rows: RowData[];
@@ -19,31 +20,42 @@ const TableRows = ({ rows, errors, handleChange, deleteRow }: Props) => {
                             <input
                                 value={row.ten}
                                 onChange={(e) => handleChange(row.id, "ten", e.target.value)}
-                                className="w-full p-1 border rounded"
+                                className="w-full p-1 outline-none"
+                                placeholder="Nhập tên sản phẩm"
                             />
                         </td>
                         <td className="border p-2">
                             <input
                                 value={row.soLuong}
                                 onChange={(e) => handleChange(row.id, "soLuong", e.target.value)}
-                                className="w-full p-1 border rounded text-right"
+                                className="w-full p-1 text-right outline-none"
+                                placeholder="Nhập số lượng"
                             />
                             {errors[`${row.id}-soLuong`] && (
                                 <p className="text-red-500 text-sm">{errors[`${row.id}-soLuong`]}</p>
                             )}
                         </td>
                         <td className="border p-2">
-                            <input
+                            <select
                                 value={row.donViTinh}
                                 onChange={(e) => handleChange(row.id, "donViTinh", e.target.value)}
-                                className="w-full p-1 border rounded"
-                            />
+                                className="w-full p-1 bg-[#0a0a0a] outline-none"
+                            >
+                                <option value="" disabled >-- Chọn --</option>
+
+                                {units.map((u) => (
+                                    <option key={u} value={u}>
+                                        {u}
+                                    </option>
+                                ))}
+                            </select>
                         </td>
                         <td className="border p-2">
                             <input
                                 value={row.soTien === "" ? "" : Number(row.soTien).toLocaleString("en-US")}
                                 onChange={(e) => handleChange(row.id, "soTien", e.target.value)}
-                                className="w-full p-1 border rounded text-right"
+                                className="w-full p-1 text-right outline-none"
+                                placeholder="Nhập giá tiền"
                             />
                             {errors[`${row.id}-soTien`] && (
                                 <p className="text-red-500 text-sm">{errors[`${row.id}-soTien`]}</p>
