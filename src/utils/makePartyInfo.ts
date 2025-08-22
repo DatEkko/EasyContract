@@ -1,10 +1,11 @@
 import { PartyInfo } from "@/components/DetailTemplate/types";
-import { Table, TableRow, TableCell, Paragraph, TextRun, WidthType } from "docx";
+import { Table, TableRow, TableCell, Paragraph, TextRun, WidthType, AlignmentType } from "docx";
 
 export const makePartyInfo = (title: string, info: PartyInfo) => {
-    const cellMargin = { top: 50, bottom: 50, left: 100 };
+    const cellMargin = { top: 95, bottom: 50, left: 100 };
     return new Table({
-        width: { size: 100, type: WidthType.PERCENTAGE },
+        width: { size: 98, type: WidthType.PERCENTAGE },
+        alignment: AlignmentType.CENTER,
         borders: {
             top: { style: "none" },
             bottom: { style: "none" },
