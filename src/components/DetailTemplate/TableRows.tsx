@@ -62,6 +62,14 @@ const TableRows = ({ rows, errors, handleChange, deleteRow }: Props) => {
                             )}
                         </td>
                         <td className="border p-2 text-right">{tongSoTien.toLocaleString()} đ</td>
+                        <td className="border p-2">
+                            <input
+                                value={row.ghiChu}
+                                onChange={(e) => handleChange(row.id, "ghiChu", e.target.value)}
+                                className="w-full p-1 outline-none"
+                                placeholder="Nhập ghi chú"
+                            />
+                        </td>
                         <td className="border p-2 text-center">
                             <button
                                 onClick={() => deleteRow(row.id)}

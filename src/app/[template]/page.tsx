@@ -25,8 +25,7 @@ const DetailTemplate = ({ params }: DetailPageProps) => {
 
     return (
         <div className="text-center px-10">
-            <div className="text-5xl mt-10">Soạn thảo {currentTemplate.name}</div>
-            <p className="mb-10">ID: {currentTemplate.id}</p>
+            <div className="text-5xl mt-10 mb-20">Soạn thảo {currentTemplate.name.toUpperCase()}</div>
 
             <div className="flex justify-center gap-10">
                 <PartyInfoForm label="Bên A" value={benA} onChange={setBenA} />
@@ -41,6 +40,7 @@ const DetailTemplate = ({ params }: DetailPageProps) => {
                         <th className="border p-2">Đơn vị tính</th>
                         <th className="border p-2">Số tiền</th>
                         <th className="border p-2">Tổng số tiền</th>
+                        <th className="border p-2">Ghi chú</th>
                         <th className="border p-2">Thao tác</th>
                     </tr>
                 </thead>

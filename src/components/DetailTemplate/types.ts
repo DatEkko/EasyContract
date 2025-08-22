@@ -22,4 +22,5 @@ export interface RowData {
     soLuong: number | "";
     donViTinh: string;
     soTien: number | "";
+    ghiChu: string;
 }

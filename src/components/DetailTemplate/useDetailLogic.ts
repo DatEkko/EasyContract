@@ -4,7 +4,7 @@ import { RowData } from "./types";
 export const useDetailLogic = () => {
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [rows, setRows] = useState<RowData[]>([
-        { id: crypto.randomUUID(), ten: "", soLuong: "", donViTinh: "", soTien: "" },
+        { id: crypto.randomUUID(), ten: "", soLuong: "", donViTinh: "", soTien: "", ghiChu: "" },
     ]);
 
     const updateRow = (id: string, field: keyof RowData, value: string | number | "") => {
@@ -30,12 +30,12 @@ export const useDetailLogic = () => {
     };
 
     const addRow = () => {
-        setRows([...rows, { id: crypto.randomUUID(), ten: "", soLuong: "", donViTinh: "", soTien: "" }]);
+        setRows([...rows, { id: crypto.randomUUID(), ten: "", soLuong: "", donViTinh: "", soTien: "", ghiChu: "" }]);
     };
 
     const deleteRow = (id: string) => {
         if (rows.length === 1) {
-            setRows([{ id: crypto.randomUUID(), ten: "", soLuong: "", donViTinh: "", soTien: "" }]);
+            setRows([{ id: crypto.randomUUID(), ten: "", soLuong: "", donViTinh: "", soTien: "", ghiChu: "" }]);
         } else {
             setRows(rows.filter((row) => row.id !== id));
         }
