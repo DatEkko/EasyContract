@@ -3,9 +3,9 @@ import { PartyInfo, RowData } from "@/components/DetailTemplate/types";
 import { makeHeader } from "@/utils/makeHeader";
 import { makePartyInfo } from "@/utils/makePartyInfo";
 import { makeSignTable } from "@/utils/makeSignTable";
-import { makeGeneralPolicy12, makeGeneralPolicy3NoDeposit, makeGeneralPolicy456, makeTopPolicy } from "@/utils/makeGeneralPolicy";
+import { makeGeneralPolicy12, makeGeneralPolicy3WithDeposit, makeGeneralPolicy456, makeTopPolicy } from "@/utils/makeGeneralPolicy";
 
-export const hopDongMuaBan = (
+export const bangBaoGia = (
     rows: RowData[],
     tongHopDong: number,
     benA: PartyInfo,
@@ -20,8 +20,16 @@ export const hopDongMuaBan = (
         new Paragraph({ text: "" }),
         new Paragraph({
             alignment: AlignmentType.CENTER,
-            spacing: { before: 100, after: 0 },
-            children: [new TextRun({ text: "HỢP ĐỒNG MUA BÁN CÂY XANH", bold: true, size: 36 })],
+            children: [
+                new TextRun({ text: "BẢNG BÁO GIÁ DỊCH VỤ MUA BÁN", bold: true, size: 36 }),
+            ],
+        }),
+        new Paragraph({
+            alignment: AlignmentType.CENTER,
+            spacing: { before: 120 },
+            children: [
+                new TextRun({ text: "VÀ CHĂM SÓC CÂY XANH", bold: true, size: 36 }),
+            ],
         }),
 
         ...makeTopPolicy(),
@@ -33,7 +41,7 @@ export const hopDongMuaBan = (
 
         ...makeGeneralPolicy12(rows, tongHopDong),
 
-        ...makeGeneralPolicy3NoDeposit(tongHopDong),
+        ...makeGeneralPolicy3WithDeposit(tongHopDong),
 
         ...makeGeneralPolicy456(),
 

@@ -159,6 +159,26 @@ export const makePartyInfo = (title: string, info: PartyInfo) => {
                 ],
             }),
 
+            new TableRow({
+                children: [
+                    new TableCell({
+                        margins: cellMargin,
+                        width: { size: 30, type: WidthType.PERCENTAGE },
+                        children: [new Paragraph({ children: [new TextRun({ text: "Số điện thoại", bold: true })] })],
+                    }),
+                    new TableCell({
+                        margins: cellMargin,
+                        width: { size: 3, type: WidthType.PERCENTAGE },
+                        children: [new Paragraph({ children: [new TextRun({ text: ":", bold: true })] })],
+                    }),
+                    new TableCell({
+                        margins: cellMargin,
+                        width: { size: 67, type: WidthType.PERCENTAGE },
+                        children: [new Paragraph(info.SDT)],
+                    }),
+                ],
+            }),
+
         ],
     });
 };

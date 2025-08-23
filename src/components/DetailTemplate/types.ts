@@ -5,6 +5,7 @@ export interface PartyInfo {
     maNganHang: string;
     maSoThue: string;
     diaChi: string;
+    SDT: string;
 }
 
 export const emptyPartyInfo: PartyInfo = {
@@ -14,6 +15,7 @@ export const emptyPartyInfo: PartyInfo = {
     maNganHang: "",
     maSoThue: "",
     diaChi: "",
+    SDT: "",
 };
 
 export interface RowData {

@@ -1,18 +1,20 @@
 [
     {
-        "tenCongTy": "Công ty TNHH ABC",
-        "daiDien": "Nguyễn Văn A",
+        "tenCongTy": "CÔNG TY TNHH HOA KIỂNG VÀ CHĂM SÓC CẢNH QUAN CHÂU SA ĐÉC",
+        "daiDien": "NGUYỄN VĂN HỮU",
         "chucVu": "Giám đốc",
-        "maNganHang": "VCB123456",
-        "maSoThue": "0101234567",
-        "diaChi": "123 Đường A, Quận B, Hà Nội"
+        "SDT": "0908925359",
+        "maNganHang": "4873678 Thương mại cổ phần Á CHÂU",
+        "maSoThue": "0318007913",
+        "diaChi": "791/15/10 Trần Xuân Soạn, Phường Tân Hưng, Thành phố Hồ Chí Minh, Việt Nam."
     },
     {
-        "tenCongTy": "Công ty Cổ phần XYZ",
-        "daiDien": "Trần Thị B",
-        "chucVu": "Tổng giám đốc",
-        "maNganHang": "ACB987654",
-        "maSoThue": "0309876543",
-        "diaChi": "456 Đường C, Quận D, TP. HCM"
+        "tenCongTy": "CÔNG TY CỔ PHẦN CẢNG SÀI GÒN HIỆP PHƯỚC",
+        "daiDien": "NGUYỄN ANH HÀO",
+        "chucVu": "Quyền Tổng Giám đốc",
+        "SDT": "(028)38260640 - 38267430",
+        "maNganHang": "1360085495 tại NH TMCP Đầu tư và phát triển Việt Nam - Chi nhánh Bình Thạnh; 1700201203344 - Ngân hàng Nông nghiệp và Phát triển Nông thôn Việt Nam - Chi nhánh TP. HCM;",
+        "maSoThue": "0303831229",
+        "diaChi": "D10C đường D3, Xã Hiệp Phước, TP. Hồ Chí Minh"
     }
 ]

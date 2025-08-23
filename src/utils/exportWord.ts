@@ -3,6 +3,7 @@ import { PartyInfo, RowData } from "@/components/DetailTemplate/types";
 import { Document, Packer, Paragraph, Table } from "docx";
 import { saveAs } from "file-saver";
 import { hopDongMuaBan } from "@/contract/hopDongMuaBan";
+import { bangBaoGia } from "@/contract/bangBaoGia";
 
 export const exportToWord = async (
     templateId: string,
@@ -18,8 +19,8 @@ export const exportToWord = async (
             children = hopDongMuaBan(rows, tongHopDong, benA, benB);
             break;
 
-        case "hd2":
-            children = hopDongMuaBan(rows, tongHopDong, benA, benB);
+        case "bang-bao-gia-dich-vu":
+            children = bangBaoGia(rows, tongHopDong, benA, benB);
             break;
 
         default:

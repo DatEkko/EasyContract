@@ -24,7 +24,8 @@ const PartyInfoForm = ({ label, value, onChange }: PartyInfoFormProps) => {
         <div className="border-4 rounded-lg p-5 shadow mb-6 text-left w-full">
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl font-bold">{label}</h2>
-
+            </div>
+            <div>
                 <select
                     className="border p-2 rounded text-black bg-amber-50"
                     onChange={(e) => handleSelectCompany(e.target.value)}
@@ -87,6 +88,14 @@ const PartyInfoForm = ({ label, value, onChange }: PartyInfoFormProps) => {
                     <input
                         value={value.diaChi}
                         onChange={(e) => handleChange("diaChi", e.target.value)}
+                        className="w-full border p-2 rounded"
+                    />
+                </div>
+                <div className="col-span-2">
+                    <label className="block mb-1 font-medium">Số điện thoại</label>
+                    <input
+                        value={value.SDT}
+                        onChange={(e) => handleChange("SDT", e.target.value)}
                         className="w-full border p-2 rounded"
                     />
                 </div>
