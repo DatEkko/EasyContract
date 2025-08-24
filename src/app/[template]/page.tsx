@@ -1,6 +1,7 @@
 "use client";
 import { use, useState } from "react";
 import ListTemplate from "@/data/ListTemplate.json";
+import PrivateTemplate from "@/data/PrivateTemplate.json"
 import TableRows from "@/components/DetailTemplate/TableRows";
 import { useDetailLogic } from "@/components/DetailTemplate/useDetailLogic";
 import { exportToWord } from "@/utils/exportWord";
@@ -13,7 +14,7 @@ interface DetailPageProps {
 
 const DetailTemplate = ({ params }: DetailPageProps) => {
     const { template } = use(params);
-    const currentTemplate = ListTemplate.find((item) => item.id === template);
+    const currentTemplate = ListTemplate.find((item) => item.id === template) || PrivateTemplate.find((item) => item.id === template);
     const [benA, setBenA] = useState<PartyInfo>(emptyPartyInfo);
     const [benB, setBenB] = useState<PartyInfo>(emptyPartyInfo);
 
