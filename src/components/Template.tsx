@@ -12,7 +12,7 @@ type TemplateProps = {
 
 const Template = ({ item, index }: TemplateProps) => {
     return (
-        <div className="w-full bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
+        <div className="w-full bg-white border-3 border-[#20253d] rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
             {/* Hình + overlay */}
             <div className="relative w-full h-[200px]">
                 <Image

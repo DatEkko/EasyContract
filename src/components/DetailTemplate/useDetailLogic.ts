@@ -30,12 +30,17 @@ export const useDetailLogic = () => {
     };
 
     const addRow = () => {
-        setRows([...rows, { id: crypto.randomUUID(), ten: "", soLuong: "", donViTinh: "", soTien: "", ghiChu: "" }]);
+        setRows([
+            ...rows,
+            { id: crypto.randomUUID(), ten: "", soLuong: "", donViTinh: "", soTien: "", ghiChu: "" },
+        ]);
     };
 
     const deleteRow = (id: string) => {
         if (rows.length === 1) {
-            setRows([{ id: crypto.randomUUID(), ten: "", soLuong: "", donViTinh: "", soTien: "", ghiChu: "" }]);
+            setRows([
+                { id: crypto.randomUUID(), ten: "", soLuong: "", donViTinh: "", soTien: "", ghiChu: "" },
+            ]);
         } else {
             setRows(rows.filter((row) => row.id !== id));
         }
@@ -46,5 +51,20 @@ export const useDetailLogic = () => {
         0
     );
 
-    return { rows, errors, handleChange, addRow, deleteRow, tongHopDong };
+    // ✅ validate toàn bộ các dòng
+    const validateRows = () => {
+        const newErrors: Record<string, string> = {};
+
+        rows.forEach((row) => {
+            if (!row.ten.trim()) newErrors[`${row.id}-ten`] = "Tên sản phẩm bắt buộc";
+            if (!row.soLuong || Number(row.soLuong) <= 0) newErrors[`${row.id}-soLuong`] = "Số lượng bắt buộc";
+            if (!row.donViTinh) newErrors[`${row.id}-donViTinh`] = "Vui lòng chọn đơn vị tính";
+            if (!row.soTien || Number(row.soTien) <= 0) newErrors[`${row.id}-soTien`] = "Đơn giá bắt buộc";
+        });
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    return { rows, errors, handleChange, addRow, deleteRow, tongHopDong, validateRows };
 };

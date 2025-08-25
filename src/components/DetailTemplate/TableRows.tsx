@@ -1,5 +1,6 @@
 import { RowData } from "./types";
 import units from "@/data/Unit.json";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 interface Props {
     rows: RowData[];
@@ -20,16 +21,18 @@ const TableRows = ({ rows, errors, handleChange, deleteRow }: Props) => {
                             <input
                                 value={row.ten}
                                 onChange={(e) => handleChange(row.id, "ten", e.target.value)}
-                                className="w-full p-1 outline-none"
+                                className={`w-full p-1 outline-none`}
                                 placeholder="Nhập tên sản phẩm"
                             />
+                            {errors[`${row.id}-ten`] && (
+                                <p className="text-red-500 text-sm">{errors[`${row.id}-ten`]}</p>
+                            )}
                         </td>
                         <td className="border p-2">
                             <input
                                 value={row.soLuong}
                                 onChange={(e) => handleChange(row.id, "soLuong", e.target.value)}
-                                className="w-full p-1 text-right outline-none"
-                                placeholder="Nhập số lượng"
+                                className="w-25 p-1 text-center outline-none"
                             />
                             {errors[`${row.id}-soLuong`] && (
                                 <p className="text-red-500 text-sm">{errors[`${row.id}-soLuong`]}</p>
@@ -39,9 +42,9 @@ const TableRows = ({ rows, errors, handleChange, deleteRow }: Props) => {
                             <select
                                 value={row.donViTinh}
                                 onChange={(e) => handleChange(row.id, "donViTinh", e.target.value)}
-                                className="w-full p-1 bg-[#0a0a0a] outline-none"
+                                className="w-25 p-1 outline-none"
                             >
-                                <option value="" disabled >-- Chọn --</option>
+                                <option value="" disabled >Chọn</option>
 
                                 {units.map((u) => (
                                     <option key={u} value={u}>
@@ -49,33 +52,34 @@ const TableRows = ({ rows, errors, handleChange, deleteRow }: Props) => {
                                     </option>
                                 ))}
                             </select>
+                            {errors[`${row.id}-donViTinh`] && (
+                                <p className="text-red-500 text-sm mt-2">{errors[`${row.id}-donViTinh`]}</p>
+                            )}
                         </td>
                         <td className="border p-2">
                             <input
                                 value={row.soTien === "" ? "" : Number(row.soTien).toLocaleString("en-US")}
                                 onChange={(e) => handleChange(row.id, "soTien", e.target.value)}
-                                className="w-full p-1 text-right outline-none"
-                                placeholder="Nhập giá tiền"
+                                className="w-40 p-1 text-right outline-none"
                             />
                             {errors[`${row.id}-soTien`] && (
                                 <p className="text-red-500 text-sm">{errors[`${row.id}-soTien`]}</p>
                             )}
                         </td>
-                        <td className="border p-2 text-right">{tongSoTien.toLocaleString()} đ</td>
+                        <td className="border p-2 text-right min-w-50">{tongSoTien.toLocaleString()} đ</td>
                         <td className="border p-2">
                             <input
                                 value={row.ghiChu}
                                 onChange={(e) => handleChange(row.id, "ghiChu", e.target.value)}
                                 className="w-full p-1 outline-none"
-                                placeholder="Nhập ghi chú"
                             />
                         </td>
                         <td className="border p-2 text-center">
                             <button
                                 onClick={() => deleteRow(row.id)}
-                                className="px-3 py-1 bg-red-500 text-white rounded"
+                                className="px-3 py-2 bg-red-500 text-white rounded cursor-pointer"
                             >
-                                Xóa
+                                <FaRegTrashAlt />
                             </button>
                         </td>
                     </tr>

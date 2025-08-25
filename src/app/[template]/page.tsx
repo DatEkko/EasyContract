@@ -7,6 +7,7 @@ import { useDetailLogic } from "@/components/DetailTemplate/useDetailLogic";
 import { exportToWord } from "@/utils/exportWord";
 import PartyInfoForm from "@/components/DetailTemplate/PartyInfoForm";
 import { emptyPartyInfo, PartyInfo } from "@/components/DetailTemplate/types";
+import { FaRegFileWord } from "react-icons/fa";
 
 interface DetailPageProps {
     params: Promise<{ template: string }>;
@@ -18,24 +19,24 @@ const DetailTemplate = ({ params }: DetailPageProps) => {
     const [benA, setBenA] = useState<PartyInfo>(emptyPartyInfo);
     const [benB, setBenB] = useState<PartyInfo>(emptyPartyInfo);
 
-    const { rows, errors, handleChange, addRow, deleteRow, tongHopDong } = useDetailLogic();
+    const { rows, errors, handleChange, addRow, deleteRow, tongHopDong, validateRows } = useDetailLogic();
 
     if (!currentTemplate) {
         return <div>Không tìm thấy hợp đồng với id: {template}</div>;
     }
 
     return (
-        <div className="text-center px-10">
-            <div className="text-5xl mt-10 mb-20">Soạn thảo {currentTemplate.name.toUpperCase()}</div>
+        <div className="text-center px-10 text-[#20253d]">
+            <div className="text-5xl my-10 font-bold">Soạn thảo {currentTemplate.name.toUpperCase()}</div>
 
             <div className="flex justify-center gap-10">
-                <PartyInfoForm label="Bên A" value={benA} onChange={setBenA} />
-                <PartyInfoForm label="Bên B" value={benB} onChange={setBenB} />
+                <PartyInfoForm label="Bên A - Sử Dụng Dịch Vụ" value={benA} onChange={setBenA} />
+                <PartyInfoForm label="Bên B - Cung Cấp Dịch Vụ" value={benB} onChange={setBenB} />
             </div>
 
             <table className="w-full border border-collapse text-lg">
                 <thead>
-                    <tr className="bg-gray-200 text-black">
+                    <tr className="bg-blue-600 text-white">
                         <th className="border p-2">Tên</th>
                         <th className="border p-2">Số lượng</th>
                         <th className="border p-2">Đơn vị tính</th>
@@ -55,14 +56,18 @@ const DetailTemplate = ({ params }: DetailPageProps) => {
             </div>
 
             <div className="flex gap-3 justify-center mt-5 mb-10">
-                <button onClick={addRow} className="px-4 py-2 bg-blue-500 text-white rounded cursor-pointer">
+                <button onClick={addRow} className="px-4 py-2 bg-blue-600 text-white rounded cursor-pointer">
                     Thêm dòng
                 </button>
                 <button
-                    onClick={() => exportToWord(currentTemplate.id, rows, tongHopDong, benA, benB)}
-                    className="px-4 py-2 bg-green-600 text-white rounded cursor-pointer"
+                    onClick={() => {
+                        if (validateRows()) {
+                            exportToWord(currentTemplate.id, rows, tongHopDong, benA, benB);
+                        }
+                    }}
+                    className="flex items-center gap-1 px-4 py-2 bg-green-800 text-white rounded cursor-pointer"
                 >
-                    Xuất file Word
+                    Xuất file Word <FaRegFileWord />
                 </button>
             </div>
         </div>
