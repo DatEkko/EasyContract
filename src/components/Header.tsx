@@ -11,11 +11,16 @@ const Header = () => {
         }`;
 
     return (
-        <div className="h-20 bg-[#20253d] flex items-center justify-between px-10 text-white font-semibold">
+        <div className="fixed w-full h-20 bg-[#20253d] flex items-center justify-between px-10 text-white font-semibold z-30">
             {/* Logo */}
-            <div className="w-35 h-20 relative">
+            <div className="relative">
                 <Link href="/">
-                    <Image src="/logo/logo.png" alt="logo" fill className="object-contain" />
+                    <Image src="/logo/logo.png"
+                        alt="logo"
+                        width={120}
+                        height={60}
+                        className="object-contain"
+                        priority />
                 </Link>
             </div>
 

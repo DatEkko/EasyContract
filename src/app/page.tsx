@@ -2,7 +2,7 @@ import Homepage from "@/components/Homepage";
 
 const Home = () => {
   return (
-    <div className="h-screen w-full">
+    <div className="w-full">
       <Homepage />
     </div>
   );
