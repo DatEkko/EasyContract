@@ -14,7 +14,7 @@ const SearchBar = () => {
     }
 
     return (
-        <div className="flex items-center w-full max-w-md mt-3 mb-15 mx-auto text-base relative">
+        <div className="flex items-center w-full max-w-md lg:mt-3 mb-10 lg:mb-15 mx-auto text-base relative">
             <input
                 type="text"
                 placeholder="Nhập mã hợp đồng cá nhân..."

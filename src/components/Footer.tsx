@@ -10,7 +10,7 @@ import { FaLocationDot } from "react-icons/fa6";
 const Footer = () => {
     return (
         <footer className="bg-gray-900 text-gray-300">
-            <div className="max-w-7xl mx-auto px-20 py-10 flex gap-20">
+            <div className="max-w-7xl mx-auto px-5 lg:px-20 py-10 flex flex-wrap lg:flex-nowrap gap-20">
                 {/* Logo + intro */}
                 <div>
                     <h2 className="text-2xl font-bold text-white">Easy Contract</h2>
