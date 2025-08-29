@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const HeroPage = () => {
     return (
         <section className="flex flex-col items-center justify-center text-center bg-gradient-to-b from-blue-50 to-white md:px-6">
@@ -14,12 +16,16 @@ const HeroPage = () => {
 
             {/* CTA buttons */}
             <div className="flex flex-col md:flex-row gap-4">
-                <button className="bg-blue-600 text-white px-6 py-3 rounded-2xl text-lg font-semibold hover:bg-blue-700 transition cursor-pointer">
-                    🚀 Dùng thử miễn phí
-                </button>
-                <button className="border border-blue-600 text-blue-600 px-6 py-3 rounded-2xl text-lg font-semibold hover:bg-blue-50 transition cursor-pointer">
-                    📞 Liên hệ tạo template riêng
-                </button>
+                <Link href={"/hop-dong-mien-phi"}>
+                    <button className="bg-blue-600 text-white px-6 py-3 rounded-2xl text-lg font-semibold hover:bg-blue-700 transition cursor-pointer">
+                        🚀 Dùng thử miễn phí
+                    </button>
+                </Link>
+                <Link href={"/tao-hop-dong"}>
+                    <button className="border border-blue-600 text-blue-600 px-6 py-3 rounded-2xl text-lg font-semibold hover:bg-blue-50 transition cursor-pointer">
+                        📞 Liên hệ tạo template riêng
+                    </button>
+                </Link>
             </div>
 
             {/* Hình minh họa giả lập */}

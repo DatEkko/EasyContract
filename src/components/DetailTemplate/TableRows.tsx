@@ -21,7 +21,7 @@ const TableRows = ({ rows, errors, handleChange, deleteRow }: Props) => {
                             <input
                                 value={row.ten}
                                 onChange={(e) => handleChange(row.id, "ten", e.target.value)}
-                                className={`w-full p-1 outline-none`}
+                                className={`min-w-45 w-full p-1 outline-none`}
                                 placeholder="Nhập tên sản phẩm"
                             />
                             {errors[`${row.id}-ten`] && (
@@ -71,10 +71,10 @@ const TableRows = ({ rows, errors, handleChange, deleteRow }: Props) => {
                             <input
                                 value={row.ghiChu}
                                 onChange={(e) => handleChange(row.id, "ghiChu", e.target.value)}
-                                className="w-full p-1 outline-none"
+                                className="min-w-45 w-full p-1 outline-none"
                             />
                         </td>
-                        <td className="border p-2 text-center">
+                        <td className="border min-w-23 p-2 text-center">
                             <button
                                 onClick={() => deleteRow(row.id)}
                                 className="px-3 py-2 bg-red-500 text-white rounded cursor-pointer"
