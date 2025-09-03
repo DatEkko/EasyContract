@@ -53,14 +53,14 @@ const Sidebar = ({ open, onClose }: SidebarProps) => {
                     <Link href="/" className={linkClass("/")} onClick={onClose}>
                         Trang Chủ
                     </Link>
-                    <Link href="/tao-hop-dong" className={linkClass("/tao-hop-dong")} onClick={onClose}>
-                        Tạo Mẫu Riêng
-                    </Link>
                     <Link href="/hop-dong-mien-phi" className={linkClass("/hop-dong-mien-phi")} onClick={onClose}>
                         Kho Hợp Đồng
                     </Link>
                     <Link href="/don-phep-mien-phi" className={linkClass("/don-phep-mien-phi")} onClick={onClose}>
                         Kho Đơn Phép
+                    </Link>
+                    <Link href="/nang-cap-dich-vu" className={linkClass("/nang-cap-dich-vu")} onClick={onClose}>
+                        Nâng Cấp / Dịch vụ
                     </Link>
                     <Link href="/lien-he" className={linkClass("/lien-he")} onClick={onClose}>
                         Liên Hệ

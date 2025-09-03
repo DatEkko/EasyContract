@@ -1,0 +1,54 @@
+[
+    {
+        "name": "Basic",
+        "price": "Miễn phí",
+        "features": [
+            "Truy cập kho hợp đồng cơ bản",
+            "Nhập thông tin & xuất file Word/PDF",
+            "Không giới hạn số lượng hợp đồng"
+        ],
+        "cta": "Sử dụng ngay",
+        "highlighted": false,
+        "link": "/hop-dong-mien-phi"
+    },
+    {
+        "name": "Pro",
+        "price": "199.000đ / tháng",
+        "features": [
+            "Tât cả tính năng cơ bản",
+            "Lưu sẵn thông tin công ty/khách hàng",
+            "Truy vấn lịch sử tạo hợp đồng",
+            "Sử dụng hợp đồng cá nhân"
+        ],
+        "cta": "Đăng ký ngay",
+        "highlighted": true,
+        "link": "/thanh-toan"
+    },
+    {
+        "name": "Custom Template",
+        "price": "149.000đ / mẫu",
+        "features": [
+            "Người dùng gửi hợp đồng sẵn có",
+            "Tích hợp vào hệ thống làm template",
+            "Hỗ trợ update khi có thay đổi (3 tháng)",
+            "Dùng auto điền & xuất file như mẫu chuẩn"
+        ],
+        "cta": "Liên hệ ngay",
+        "highlighted": false,
+        "link": "/lien-he"
+    },
+    {
+        "name": "Legal Consulting",
+        "price": "Giá cả thương lượng",
+        "features": [
+            "Dịch vụ tư vấn pháp lý hợp đồng",
+            "Soạn thảo hợp đồng chuẩn từ A-Z",
+            "Tích hợp thành template riêng",
+            "Update khi có thay đổi pháp luật (3 tháng)",
+            "Ưu tiên hỗ trợ kỹ thuật"
+        ],
+        "cta": "Liên hệ ngay",
+        "highlighted": false,
+        "link": "/lien-he"
+    }
+]

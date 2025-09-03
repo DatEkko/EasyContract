@@ -34,14 +34,14 @@ const Header = () => {
                     <Link href="/" className={linkClass("/")}>
                         Trang Chủ
                     </Link>
-                    <Link href="/tao-hop-dong" className={linkClass("/tao-hop-dong")}>
-                        Tạo Mẫu Riêng
-                    </Link>
                     <Link href="/hop-dong-mien-phi" className={linkClass("/hop-dong-mien-phi")}>
                         Kho Hợp Đồng
                     </Link>
                     <Link href="/don-phep-mien-phi" className={linkClass("/don-phep-mien-phi")}>
                         Kho Đơn Phép
+                    </Link>
+                    <Link href="/nang-cap-dich-vu" className={linkClass("/nang-cap-dich-vu")}>
+                        Nâng Cấp / Dịch vụ
                     </Link>
                     <Link href="/lien-he" className={linkClass("/lien-he")}>
                         Liên Hệ
