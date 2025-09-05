@@ -1,4 +1,4 @@
-import { RowData } from "@/components/DetailTemplate/types";
+import { PartyInfo, RowData } from "@/components/DetailTemplate/types";
 import { Paragraph, TextRun, AlignmentType, Table, WidthType } from "docx";
 import { makeRows } from "./makeRows";
 import { makeBankInfoTable } from "./makeBankInfoTable";
@@ -67,7 +67,7 @@ export const makeGeneralPolicy12 = (rows: RowData[], tongHopDong: number) => [
     }),
 ];
 
-export const makeGeneralPolicy3NoDeposit = (tongHopDong: number) => [
+export const makeGeneralPolicy3NoDeposit = (tongHopDong: number, beneficiary: PartyInfo) => [
     new Paragraph({ text: "" }),
     new Paragraph({
         children: [new TextRun({ text: "ĐIỀU 03: GIÁ VÀ PHƯƠNG THỨC THANH TOÁN", bold: true })],
@@ -106,11 +106,7 @@ export const makeGeneralPolicy3NoDeposit = (tongHopDong: number) => [
             }),
         ],
     }),
-    makeBankInfoTable(
-        "THƯƠNG MẠI CỔ PHẦN Á CHÂU",
-        "4873678",
-        "CÔNG TY TNHH HOA KIỂNG VÀ CHĂM SÓC CẢNH QUAN CHÂU SA ĐÉC"
-    ),
+    makeBankInfoTable(beneficiary),
     new Paragraph({
         spacing: { before: 150, after: 150 },
         children: [new TextRun({ text: "3.3      Hồ sơ quyết toán", bold: true })],
@@ -122,7 +118,7 @@ export const makeGeneralPolicy3NoDeposit = (tongHopDong: number) => [
     }),
 ];
 
-export const makeGeneralPolicy3WithDeposit = (tongHopDong: number) => [
+export const makeGeneralPolicy3WithDeposit = (tongHopDong: number, beneficiary: PartyInfo) => [
     new Paragraph({ text: "" }),
     new Paragraph({
         children: [new TextRun({ text: "ĐIỀU 03: GIÁ VÀ PHƯƠNG THỨC THANH TOÁN", bold: true })],
@@ -163,11 +159,7 @@ export const makeGeneralPolicy3WithDeposit = (tongHopDong: number) => [
             }),
         ],
     }),
-    makeBankInfoTable(
-        "THƯƠNG MẠI CỔ PHẦN Á CHÂU",
-        "4873678",
-        "CÔNG TY TNHH HOA KIỂNG VÀ CHĂM SÓC CẢNH QUAN CHÂU SA ĐÉC"
-    ),
+    makeBankInfoTable(beneficiary),
     new Paragraph({
         alignment: AlignmentType.JUSTIFIED,
         spacing: { before: 100, after: 150 },

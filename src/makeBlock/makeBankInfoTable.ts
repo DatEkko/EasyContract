@@ -1,3 +1,4 @@
+import { PartyInfo } from "@/components/DetailTemplate/types";
 import {
     Table, TableRow, TableCell, Paragraph, TextRun,
     WidthType, AlignmentType, VerticalAlign
@@ -6,9 +7,7 @@ import {
 const cellMargins = { top: 50, bottom: 50, left: 150 };
 
 export function makeBankInfoTable(
-    bankName: string,
-    accountNumber: string,
-    beneficiary: string
+    beneficiary: PartyInfo
 ) {
     return new Table({
         width: { size: 85, type: WidthType.PERCENTAGE },
@@ -45,7 +44,7 @@ export function makeBankInfoTable(
                         verticalAlign: VerticalAlign.CENTER,
                         children: [
                             new Paragraph({
-                                children: [new TextRun({ text: bankName, bold: true })],
+                                children: [new TextRun({ text: beneficiary.tenNganHang, bold: true })],
                             }),
                         ],
                     }),
@@ -67,7 +66,7 @@ export function makeBankInfoTable(
                         verticalAlign: VerticalAlign.CENTER,
                         children: [
                             new Paragraph({
-                                children: [new TextRun({ text: accountNumber, bold: true })],
+                                children: [new TextRun({ text: beneficiary.soTaiKhoan, bold: true })],
                             }),
                         ],
                     }),
@@ -88,7 +87,7 @@ export function makeBankInfoTable(
                         verticalAlign: VerticalAlign.CENTER,
                         children: [
                             new Paragraph({
-                                children: [new TextRun({ text: beneficiary, bold: true })],
+                                children: [new TextRun({ text: beneficiary.tenCongTy, bold: true })],
                             }),
                         ],
                     }),

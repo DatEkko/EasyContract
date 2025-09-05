@@ -45,9 +45,10 @@ export function parseTemplate(
                 if (block.name === "makeTopPolicy") return makeTopPolicy();
                 if (block.name === "makeGeneralPolicy12") return makeGeneralPolicy12(rows, tongHopDong);
                 if (block.name === "makeGeneralPolicy3NoDeposit")
-                    return makeGeneralPolicy3NoDeposit(tongHopDong);
+                    return makeGeneralPolicy3NoDeposit(tongHopDong, benB);
                 if (block.name === "makeGeneralPolicy3WithDeposit")
-                    return makeGeneralPolicy3WithDeposit(tongHopDong);
+                    return makeGeneralPolicy3WithDeposit(tongHopDong, benB);
+
                 if (block.name === "makeGeneralPolicy456") return makeGeneralPolicy456();
                 return [];
 

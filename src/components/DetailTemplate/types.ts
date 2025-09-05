@@ -4,7 +4,8 @@ export interface PartyInfo {
     tenCongTy: string;
     daiDien: string;
     chucVu: string;
-    maNganHang: string;
+    soTaiKhoan: string;
+    tenNganHang: string;
     maSoThue: string;
     diaChi: string;
     SDT: string;
@@ -14,7 +15,8 @@ export const emptyPartyInfo: PartyInfo = {
     tenCongTy: "",
     daiDien: "",
     chucVu: "",
-    maNganHang: "",
+    soTaiKhoan: "",
+    tenNganHang: "",
     maSoThue: "",
     diaChi: "",
     SDT: "",

@@ -105,7 +105,7 @@ export const makePartyInfo = (title: string, info: PartyInfo) => {
                     new TableCell({
                         margins: cellMargin,
                         width: { size: 67, type: WidthType.PERCENTAGE },
-                        children: [new Paragraph(info.maNganHang)],
+                        children: [new Paragraph(info.soTaiKhoan + info.tenNganHang)],
                     }),
                 ],
             }),
