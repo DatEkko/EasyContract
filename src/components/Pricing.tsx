@@ -29,7 +29,7 @@ const PricingSection = () => {
                         768: { slidesPerView: 2 },
                         1024: { slidesPerView: 3 },
                     }}
-                    className="min-h-125"
+                    className="min-h-145 sm:min-h-125"
                 >
                     {plans.map((plan) => (
                         <SwiperSlide key={plan.name}>
@@ -56,7 +56,7 @@ const PricingSection = () => {
                                         </li>
                                     ))}
                                 </ul>
-                                <div className="relative inline-block">
+                                <div className="relative inline-block mt-10">
                                     <Link href={plan.link}
                                         className={`px-16 py-3 rounded-xl font-semibold transition cursor-pointer ${plan.highlighted
                                             ? "bg-blue-600 text-white hover:bg-blue-700 border-blink"

@@ -1,9 +1,8 @@
-
-import { PartyInfo, RowData } from "@/components/DetailTemplate/types";
-import { Document, Packer, Paragraph, Table } from "docx";
+import { Document, Packer } from "docx";
 import { saveAs } from "file-saver";
-import { hopDongMuaBan } from "@/contract/hopDongMuaBan";
-import { bangBaoGia } from "@/contract/bangBaoGia";
+import { parseTemplate } from "@/utils/parseTemplate";
+import { PartyInfo, RowData, Template } from "@/components/DetailTemplate/types";
+import templatesJson from "@/data/ListTemplateContent.json";
 
 export const exportToWord = async (
     templateId: string,
@@ -12,22 +11,15 @@ export const exportToWord = async (
     benA: PartyInfo,
     benB: PartyInfo
 ) => {
-    let children: (Paragraph | Table)[] = [];
+    const templates: Template[] = templatesJson as Template[];
+    const template = templates.find((t) => t.id === templateId);
 
-    switch (templateId) {
-        case "hop-dong-mua-ban":
-            children = hopDongMuaBan(rows, tongHopDong, benA, benB);
-            break;
-
-        case "bang-bao-gia-dich-vu":
-            children = bangBaoGia(rows, tongHopDong, benA, benB);
-            break;
-
-        default:
-            children = [
-                new Paragraph({ text: `Template chưa hỗ trợ: ${templateId}` }),
-            ];
+    if (!template) {
+        alert(`Template chưa hỗ trợ: ${templateId}`);
+        return;
     }
+
+    const children = parseTemplate(template, rows, tongHopDong, benA, benB);
 
     const doc = new Document({
         styles: {
@@ -56,7 +48,6 @@ export const exportToWord = async (
             },
         ],
     });
-
 
     const blob = await Packer.toBlob(doc);
     saveAs(blob, `${templateId}.docx`);

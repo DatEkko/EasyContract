@@ -19,3 +19,10 @@
 .swiper-pagination {
   bottom: -5px !important; /* đưa về dưới cùng */
 }
+
+@media (max-width: 640px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none !important;
+  }
+}

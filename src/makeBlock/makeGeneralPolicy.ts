@@ -2,7 +2,7 @@ import { RowData } from "@/components/DetailTemplate/types";
 import { Paragraph, TextRun, AlignmentType, Table, WidthType } from "docx";
 import { makeRows } from "./makeRows";
 import { makeBankInfoTable } from "./makeBankInfoTable";
-import { numberToVietnamese } from "./numberToVietnamese";
+import { numberToVietnamese } from "../utils/numberToVietnamese";
 
 const makeClause = (text: string) =>
     new Paragraph({

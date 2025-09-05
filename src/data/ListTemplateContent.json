@@ -1,0 +1,105 @@
+[
+    {
+        "id": "hop-dong-mua-ban",
+        "name": "Hợp đồng mua bán",
+        "blocks": [
+            {
+                "type": "header",
+                "title": "CÔNG TY TNHH HOA KIỂNG VÀ CHĂM SÓC CẢNH QUAN \n \n \n CHÂU SA ĐÉC",
+                "code": "…/HĐMB/2024/CSD",
+                "location": "TP. Hồ Chí Minh",
+                "date": "ngày … tháng … năm 2025"
+            },
+            {
+                "type": "title",
+                "text": "HỢP ĐỒNG MUA BÁN CÂY XANH",
+                "size": 36,
+                "bold": true,
+                "align": "center",
+                "spacingBefore": 100
+            },
+            {
+                "type": "block",
+                "name": "makeTopPolicy"
+            },
+            {
+                "type": "party",
+                "role": "A"
+            },
+            {
+                "type": "party",
+                "role": "B"
+            },
+            {
+                "type": "block",
+                "name": "makeGeneralPolicy12"
+            },
+            {
+                "type": "block",
+                "name": "makeGeneralPolicy3NoDeposit"
+            },
+            {
+                "type": "block",
+                "name": "makeGeneralPolicy456"
+            },
+            {
+                "type": "signTable"
+            }
+        ]
+    },
+    {
+        "id": "bang-bao-gia-dich-vu",
+        "name": "Bảng báo giá dịch vụ",
+        "blocks": [
+            {
+                "type": "header",
+                "title": "CÔNG TY TNHH HOA KIỂNG VÀ CHĂM SÓC CẢNH QUAN \n \n \n CHÂU SA ĐÉC",
+                "code": "…/HĐMB/2024/CSD",
+                "location": "TP. Hồ Chí Minh",
+                "date": "ngày … tháng … năm 2025"
+            },
+            {
+                "type": "title",
+                "text": "BẢNG BÁO GIÁ DỊCH VỤ MUA BÁN",
+                "size": 36,
+                "bold": true,
+                "align": "center"
+            },
+            {
+                "type": "title",
+                "text": "VÀ CHĂM SÓC CÂY XANH",
+                "size": 36,
+                "bold": true,
+                "align": "center",
+                "spacingBefore": 120
+            },
+            {
+                "type": "block",
+                "name": "makeTopPolicy"
+            },
+            {
+                "type": "party",
+                "role": "A"
+            },
+            {
+                "type": "party",
+                "role": "B"
+            },
+            {
+                "type": "block",
+                "name": "makeGeneralPolicy12"
+            },
+            {
+                "type": "block",
+                "name": "makeGeneralPolicy3WithDeposit"
+            },
+            {
+                "type": "block",
+                "name": "makeGeneralPolicy456"
+            },
+            {
+                "type": "signTable"
+            }
+        ]
+    }
+]
