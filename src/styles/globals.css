@@ -3,7 +3,6 @@
 @import "./customScrollBar.css";
 @import "./customSwiper.css";
 @import "./color.css";
-@import "./font.css";
 
 :root {
   --background: #fcfcfc;
@@ -20,7 +19,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Roboto";
+  font-family: var(--font-roboto), sans-serif;
 }
 
 

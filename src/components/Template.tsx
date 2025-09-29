@@ -20,6 +20,7 @@ const Template = ({ item, index }: TemplateProps) => {
                     fill
                     alt={item.image ? item.image : "anh-hop-dong"}
                     className="object-cover"
+                    unoptimized
                 />
                 <div className="absolute inset-x-0 bottom-0 h-[100px] bg-gradient-to-t from-white via-white/70 to-transparent"></div>
 

@@ -30,21 +30,21 @@ const Header = () => {
                 </div>
 
                 {/* Menu */}
-                <div className="hidden lg:flex gap-12 text-lg">
+                <div className="hidden lg:flex lg:items-center gap-12 text-lg">
                     <Link href="/" className={linkClass("/")}>
                         Trang Chủ
                     </Link>
                     <Link href="/hop-dong-mien-phi" className={linkClass("/hop-dong-mien-phi")}>
                         Kho Hợp Đồng
                     </Link>
-                    <Link href="/don-phep-mien-phi" className={linkClass("/don-phep-mien-phi")}>
-                        Kho Đơn Phép
-                    </Link>
                     <Link href="/nang-cap-dich-vu" className={linkClass("/nang-cap-dich-vu")}>
                         Nâng Cấp / Dịch vụ
                     </Link>
                     <Link href="/lien-he" className={linkClass("/lien-he")}>
                         Liên Hệ
+                    </Link>
+                    <Link href="/dang-nhap" className={`${linkClass("/dang-nhap")} border-2 py-2 px-4 rounded-3xl`}>
+                        Đăng Nhập
                     </Link>
                 </div>
 

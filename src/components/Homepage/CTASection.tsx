@@ -6,7 +6,7 @@ const CTASection = () => {
             {/* Ảnh nền */}
             <div
                 className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: "url('images/cta_image.jpg')" }}
+                style={{ backgroundImage: "url('/images/cta_image.jpg')" }}
             />
             {/* Lớp phủ mờ */}
             <div className="absolute inset-0 bg-black/80" />

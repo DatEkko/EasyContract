@@ -15,3 +15,10 @@
 .border-blink {
   animation: border-blink 1.2s infinite;
 }
+
+.btn-transition {
+  @apply transition ease-in-out duration-200;
+}
+.btn-transition:hover {
+  @apply shadow-md scale-102;
+}
