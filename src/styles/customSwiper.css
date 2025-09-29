@@ -2,17 +2,17 @@
 /* chỉnh kích thước chung của nút */
 .swiper-button-next,
 .swiper-button-prev {
-  @apply min-w-15 min-h-15 rounded-full bg-[#f6f8ff] shadow-lg flex items-center justify-center;
+  @apply min-w-15 min-h-15 rounded-full bg-ghost-white shadow-lg flex items-center justify-center;
 }
 
 /* chỉnh icon bên trong */
 .swiper-button-prev::after {
-  @apply text-[#20253d] font-bold mr-1;
+  @apply text-econtract font-bold mr-1;
   font-size: 36px !important; /* thu nhỏ symbol */
 }
 
 .swiper-button-next::after{
-  @apply text-[#20253d] font-bold ml-1;
+  @apply text-econtract font-bold ml-1;
   font-size: 36px !important; /* thu nhỏ symbol */
 }
 

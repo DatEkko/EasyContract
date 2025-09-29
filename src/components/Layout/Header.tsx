@@ -16,7 +16,7 @@ const Header = () => {
 
     return (
         <>
-            <div className="fixed w-full h-20 bg-[#20253d] flex items-center justify-between px-10 text-white font-semibold z-30">
+            <div className="fixed w-full h-20 bg-econtract flex items-center justify-between px-10 text-white font-semibold z-30">
                 {/* Logo */}
                 <div className="relative">
                     <Link href="/">

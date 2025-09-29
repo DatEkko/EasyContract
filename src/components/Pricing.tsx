@@ -43,7 +43,7 @@ const PricingSection = () => {
                                 <p
                                     className={`text-3xl font-bold mb-6 ${plan.price.includes("đ")
                                         ? "text-blue-600"
-                                        : "text-[#20253d] text-2xl"
+                                        : "text-econtract text-2xl"
                                         }`}
                                 >
                                     {plan.price}

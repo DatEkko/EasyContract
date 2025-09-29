@@ -41,7 +41,7 @@ const PartyInfoForm = ({ label, value, onChange }: PartyInfoFormProps) => {
 
             {/* Select nhanh công ty */}
             <select
-                className="outline-none p-2 rounded text-white bg-[#20253d] mb-4 w-full"
+                className="outline-none p-2 rounded text-white bg-econtract mb-4 w-full"
                 value={selectedCompany}
                 onChange={(e) => handleSelectCompany(e.target.value)}
             >
@@ -59,7 +59,7 @@ const PartyInfoForm = ({ label, value, onChange }: PartyInfoFormProps) => {
             <div className="flex flex-col">
                 {fields.map(({ key, label }) => (
                     <div key={key}>
-                        <label className="block mb-1 mt-2 font-bold text-[#6a6767]">{label}</label>
+                        <label className="block mb-1 mt-2 font-bold text-dim-gray">{label}</label>
                         <input
                             value={value[key] || ""}
                             onChange={(e) => handleChange(key, e.target.value)}

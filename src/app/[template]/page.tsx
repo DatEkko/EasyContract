@@ -27,7 +27,7 @@ const DetailTemplate = ({ params }: DetailPageProps) => {
     }
 
     return (
-        <div className="text-center px-5 md:px-10 text-[#20253d]">
+        <div className="text-center px-5 md:px-10 text-econtract">
             <div className="text-3xl md:text-5xl my-10 font-bold">Soạn thảo <span className="block md:inline">{currentTemplate.name.toUpperCase()}</span></div>
 
             <div className="flex flex-col lg:flex-row justify-center gap-3 lg:gap-10">

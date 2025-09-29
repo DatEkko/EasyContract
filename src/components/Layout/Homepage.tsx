@@ -1,15 +1,15 @@
+import CTASection from "../Homepage/CTASection";
+import FeatureSection from "../Homepage/FeatureSection";
+import HeroPage from "../Homepage/Heropage";
+import ProblemSection from "../Homepage/ProblemSection";
+import SolutionSection from "../Homepage/SolutionSection";
 import SearchBar from "./SearchBar";
-import CTASection from "./Section/CTASection";
-import FeatureSection from "./Section/FeatureSection";
-import HeroPage from "./Section/Heropage";
-import ProblemSection from "./Section/ProblemSection";
-import SolutionSection from "./Section/SolutionSection";
 
 const Homepage = () => {
     return (
         <div>
             <div className="text-center text-3xl pt-5 px-8 md:px-10">
-                <h1 className="font-bold text-3xl lg:text-5xl py-8 text-[#20253d]">Xin chào, đây là <span className="block md:inline text-4xl lg:text-5xl font-black lg:font-bold">Easy Contract</span></h1>
+                <h1 className="font-bold text-3xl lg:text-5xl py-8 text-econtract">Xin chào, đây là <span className="block md:inline text-4xl lg:text-5xl font-black lg:font-bold">Easy Contract</span></h1>
                 <SearchBar />
                 <HeroPage />
             </div>

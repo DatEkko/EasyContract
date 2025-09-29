@@ -6,7 +6,7 @@ import { FaPiggyBank } from "react-icons/fa";
 
 const FeatureSection = () => {
     return (
-        <div className="h-fit bg-[#033b90] text-white mt-10 px-5 py-10 lg:p-20">
+        <div className="h-fit bg-air-force-blue text-white mt-10 px-5 py-10 lg:p-20">
             <div className="xl:flex gap-25">
                 <div className="mb-20 xl:mb-0">
                     <div className="text-3xl font-bold">Tính năng nổi bật</div>
@@ -15,7 +15,7 @@ const FeatureSection = () => {
                 </div>
                 <div className="flex gap-12 flex-wrap">
                     <div className="w-full md:w-[45%]">
-                        <div className="w-18 h-18 rounded-full flex items-center justify-center bg-white text-[#033b90] text-3xl mb-4"><FaDatabase /></div>
+                        <div className="w-18 h-18 rounded-full flex items-center justify-center bg-white text-air-force-blue text-3xl mb-4"><FaDatabase /></div>
                         <div className="text-3xl font-bold pb-4">
                             Kho hợp đồng lớn
                         </div>
@@ -25,7 +25,7 @@ const FeatureSection = () => {
                     </div>
 
                     <div className="w-full md:w-[45%]">
-                        <div className="w-18 h-18 rounded-full flex items-center justify-center bg-white text-[#033b90] text-3xl mb-4"><RiContractFill /></div>
+                        <div className="w-18 h-18 rounded-full flex items-center justify-center bg-white text-air-force-blue text-3xl mb-4"><RiContractFill /></div>
                         <div className="text-3xl font-bold pb-4">
                             Tạo hợp đồng nhanh
                         </div>
@@ -35,7 +35,7 @@ const FeatureSection = () => {
                     </div>
 
                     <div className="w-full md:w-[45%]">
-                        <div className="w-18 h-18 rounded-full flex items-center justify-center bg-white text-[#033b90] text-3xl mb-4"><FaUserLock /></div>
+                        <div className="w-18 h-18 rounded-full flex items-center justify-center bg-white text-air-force-blue text-3xl mb-4"><FaUserLock /></div>
                         <div className="text-3xl font-bold pb-4">
                             Tạo hợp đồng riêng
                         </div>
@@ -45,7 +45,7 @@ const FeatureSection = () => {
                     </div>
 
                     <div className="w-full md:w-[45%]">
-                        <div className="w-18 h-18 rounded-full flex items-center justify-center bg-white text-[#033b90] text-3xl mb-4"><IoFlash /></div>
+                        <div className="w-18 h-18 rounded-full flex items-center justify-center bg-white text-air-force-blue text-3xl mb-4"><IoFlash /></div>
                         <div className="text-3xl font-bold pb-4">
                             Lưu thông tin nhanh
                         </div>
@@ -55,7 +55,7 @@ const FeatureSection = () => {
                     </div>
 
                     <div className="w-full md:w-[45%]">
-                        <div className="w-18 h-18 rounded-full flex items-center justify-center bg-white text-[#033b90] text-3xl mb-4"><FaPiggyBank /></div>
+                        <div className="w-18 h-18 rounded-full flex items-center justify-center bg-white text-air-force-blue text-3xl mb-4"><FaPiggyBank /></div>
                         <div className="text-3xl font-bold pb-4">
                             Sử dụng miễn phí
                         </div>

@@ -27,7 +27,7 @@ const Sidebar = ({ open, onClose }: SidebarProps) => {
 
             {/* Sidebar */}
             <div
-                className={`fixed top-0 right-0 h-full w-64 bg-[#20253d] z-30 text-white p-6 
+                className={`fixed top-0 right-0 h-full w-64 bg-econtract z-30 text-white p-6 
           transform transition-transform duration-300 
           ${open ? "translate-x-0" : "translate-x-full"}`}
             >

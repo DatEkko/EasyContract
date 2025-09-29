@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const ProblemSection = () => {
     return (
-        <section className="lg:pt-10 pb-20 bg-[#20253d] px-6 text-base lg:text-xl">
+        <section className="lg:pt-10 pb-20 bg-econtract px-6 text-base lg:text-xl">
             <div className="relative">
                 <div className="font-bold text-xl md:text-5xl py-10 md:mb-15 text-white">Những vấn đề bạn hay gặp phải</div>
                 <div className="relative w-50 h-50 md:w-90 md:h-90 rounded-full overflow-hidden mx-auto shadow-xl shadow-gray-400/60">
