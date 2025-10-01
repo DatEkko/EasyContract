@@ -24,16 +24,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 });
 
                 if (!isSuccess(res)) {
-                    throw new Error(res.message || "Server error");
+                    //Tạo user giả để bắt lỗi chi tiết
+                    return {
+                        id: "error",
+                        errorType: res.statusCode === 401 ? "WrongInformation" : "NotActivated",
+                    };
                 }
+
+                const backendData = res.data?.data;
 
                 // Nếu thành công, trả về user
                 const user = {
-                    _id: res.data?.user?._id,
-                    name: res.data?.user?.name,
-                    email: res.data?.user?.email,
-                    access_token: res.data?.access_token,
-                    role: res.data?.user?.role,
+                    _id: backendData?.user._id,
+                    name: backendData?.user.name,
+                    email: backendData?.user.email,
+                    access_token: backendData?.access_token,
+                    role: backendData?.user.role,
                 }
 
                 return user;
@@ -55,6 +61,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session({ session, token }) {
             (session.user as IUser) = token.user;
             return session;
+        },
+
+        //Kiểm tra xem đăng nhập thành công hay thất bại
+        async signIn({ user }) {
+            if (user.id === "error" && user.errorType) {
+                return `/auth/login?error=${user.errorType}`;
+            }
+            return true;
         }
     },
 })

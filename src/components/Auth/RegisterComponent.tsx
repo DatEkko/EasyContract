@@ -6,10 +6,19 @@ import { BsFillEyeSlashFill } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { handleRegisterService } from "@/services/authService";
+
 
 const RegisterComponent = () => {
+    const router = useRouter();
     const [isShowPass, setIsShowPass] = useState<boolean>(false);
     const [isShowRePass, setIsShowRePass] = useState<boolean>(false);
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
     const hanldeShowHide = () => {
         setIsShowPass(!isShowPass);
     }
@@ -17,6 +26,21 @@ const RegisterComponent = () => {
     const hanldeShowHideRePass = () => {
         setIsShowRePass(!isShowRePass);
     }
+
+    const handleRegister = async () => {
+        if (password !== confirmPassword) {
+            alert("Mật khẩu không giống nhau");
+            return;
+        }
+
+        const res = await handleRegisterService(email, password, name);
+
+        if (res.success && res.data) {
+            router.push(`/xac-thuc/${res.data.data?._id}`);
+        } else {
+            alert(res.message);
+        }
+    };
 
     return (
         <div className="min-h-screen w-full py-10 px-2 lg:px-10 xl:px-20 flex items-center justify-center text-econtract max-w-[1450px]">
@@ -38,10 +62,19 @@ const RegisterComponent = () => {
                     {/* Input form */}
                     <div className="mt-8 text-lg">
                         <div className="border-2 w-full rounded-full">
-                            <input className="px-6 h-14 w-full border-none outline-none" placeholder="Nhập email hoặc tên tài khoản" />
+                            <input
+                                onChange={(event) => setEmail(event.target.value)}
+                                value={email}
+                                className="px-6 h-14 w-full border-none outline-none"
+                                placeholder="Nhập email hoặc tên tài khoản" />
                         </div>
                         <div className="border-2 w-full rounded-full mt-5 relative">
-                            <input className="px-6 h-14 w-full border-none outline-none" placeholder="Nhập mật khẩu" type={isShowPass ? "text" : "password"} />
+                            <input
+                                onChange={(event) => setPassword(event.target.value)}
+                                value={password}
+                                className="px-6 h-14 w-full border-none outline-none"
+                                placeholder="Nhập mật khẩu"
+                                type={isShowPass ? "text" : "password"} />
                             <div
                                 onClick={() => hanldeShowHide()}
                                 className="absolute right-5 top-[30%] cursor-pointer text-2xl">
@@ -49,18 +82,33 @@ const RegisterComponent = () => {
                             </div>
                         </div>
                         <div className="border-2 w-full rounded-full mt-5 relative">
-                            <input className="px-6 h-14 w-full border-none outline-none" placeholder="Nhập mật lại khẩu" type={isShowRePass ? "text" : "password"} />
+                            <input
+                                onChange={(event) => setConfirmPassword(event.target.value)}
+                                value={confirmPassword}
+                                className="px-6 h-14 w-full border-none outline-none"
+                                placeholder="Nhập mật lại khẩu"
+                                type={isShowRePass ? "text" : "password"} />
                             <div
                                 onClick={() => hanldeShowHideRePass()}
                                 className="absolute right-5 top-[30%] cursor-pointer text-2xl">
                                 {isShowRePass ? <BsFillEyeSlashFill /> : <PiEyesBold />}
                             </div>
                         </div>
+
+                        <div className="border-2 w-full rounded-full mt-5 ">
+                            <input
+                                onChange={(event) => setName(event.target.value)}
+                                value={name}
+                                className="px-6 h-14 w-full border-none outline-none"
+                                placeholder="Nhập tên" />
+                        </div>
                     </div>
 
                     {/* Button */}
                     <div className="border rounded-full mt-5 bg-econtract text-white btn-transition">
-                        <button className="h-14 text-center w-full cursor-pointer font-bold">ĐĂNG KÝ</button>
+                        <button
+                            onClick={() => handleRegister()}
+                            className="h-14 text-center w-full cursor-pointer font-bold">ĐĂNG KÝ</button>
                     </div>
                     {/* Divider */}
                     <div className="flex items-center mt-8 px-5 opacity-80">

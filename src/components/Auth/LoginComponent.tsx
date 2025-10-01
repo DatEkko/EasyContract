@@ -6,107 +6,134 @@ import { BsFillEyeSlashFill } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
+import ActivationModal from "../Modal/ActivationModal";
+import { activateAccountService, handleLoginService, resendActivationCodeService } from "@/services/authService";
 
 const LoginComponent = () => {
+    const [showActivation, setShowActivation] = useState<boolean>(false)
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
     const [isShowPass, setIsShowPass] = useState<boolean>(false);
+    const [activeCode, setActiveCode] = useState<string>("");
+    const [userId, setUserId] = useState<string>("");
+    const [step, setStep] = useState(0);
     const hanldeShowHide = () => {
         setIsShowPass(!isShowPass);
     }
 
     const handleLogin = async () => {
-        setError("");
-        const res = await signIn("credentials", {
-            callbackUrl: "/",
-            redirect: false, // tránh redirect tự động, để bạn xử lý kết quả
-            username,
-            password,
-        });
+        const res = await handleLoginService(username, password);
 
-        if (res?.error) {
-            setError(res.error);
-        } else {
-            // Login thành công
-            alert("Đăng nhập thành công!");
-            // ví dụ: chuyển trang
+        if (res?.error === "NotActivated") {
+            setShowActivation(true);
+        } else if (res?.error === "WrongInformation") {
+            alert("Sai thông tin đăng nhập");
+        } else if (res?.ok) {
             window.location.href = "/";
+            alert("Đăng nhập thành công");
+        }
+    };
+
+    const handleSendEmail = async () => {
+        setStep(1);
+        const res = await resendActivationCodeService(username);
+        if (res?.success && res.data?.data) {
+            setUserId(res.data.data._id);
+        }
+    };
+
+    const handleReActiveAccount = async () => {
+        const res = await activateAccountService(userId, activeCode);
+        if (res.success) {
+            setShowActivation(false);
+            alert("Kích hoạt tài khoản thành công. Vui lòng đăng nhập lại");
+        } else {
+            alert(res.message);
         }
     };
 
     return (
-        <div className="min-h-screen w-full py-10 px-2 lg:px-10 xl:px-20 flex items-center justify-center text-econtract max-w-[1450px]">
-            <div className="hidden xl:block relative w-[60%] h-full">
-                <Image src={"/images/login_image.jpg"} fill alt="login-image" />
-            </div>
-            <div className="w-full sm:w-[80%] lg:w-[60%] xl:w-[40%] h-full">
-                <div className="shadow-lg h-full px-5 sm:px-10 py-5">
-                    {/* Title */}
-                    <div>
-                        <p className="text-2xl font-bold">Xin chào,</p>
-                        <p className="text-3xl font-bold">Đây là eContract</p>
-                    </div>
-                    {/* Đăng ký */}
-                    <div className="flex items-center gap-2 mt-5">
-                        <p className="">Người dùng mới? </p>
-                        <Link href={"/dang-ky"} className="underline font-bold cursor-pointer">Đăng ký tại đây</Link>
-                    </div>
-                    {/* Input form */}
-                    <div className="mt-8 text-lg">
-                        <div className="border-2 w-full rounded-full">
-                            <input
-                                className="px-6 h-14 w-full border-none outline-none"
-                                placeholder="Nhập email hoặc tên tài khoản"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
-                            />
+        <>
+            <div className="min-h-screen w-full py-10 px-2 lg:px-10 xl:px-20 flex items-center justify-center text-econtract max-w-[1450px]">
+                <div className="hidden xl:block relative w-[60%] h-full">
+                    <Image src={"/images/login_image.jpg"} fill alt="login-image" />
+                </div>
+                <div className="w-full sm:w-[80%] lg:w-[60%] xl:w-[40%] h-full">
+                    <div className="shadow-lg h-full px-5 sm:px-10 py-5">
+                        {/* Title */}
+                        <div>
+                            <p className="text-2xl font-bold">Xin chào,</p>
+                            <p className="text-3xl font-bold">Đây là eContract</p>
                         </div>
-                        <div className="border-2 w-full rounded-full mt-5 relative">
-                            <input
-                                onChange={(e) => setPassword(e.target.value)}
-                                value={password}
-                                className="px-6 h-14 w-full border-none outline-none"
-                                placeholder="Nhập mật khẩu"
-                                type={isShowPass ? "text" : "password"} />
-                            <div
-                                onClick={() => hanldeShowHide()}
-                                className="absolute right-5 top-[30%] cursor-pointer text-2xl">
-                                {isShowPass ? <BsFillEyeSlashFill /> : <PiEyesBold />}
+                        {/* Đăng ký */}
+                        <div className="flex items-center gap-2 mt-5">
+                            <p className="">Người dùng mới? </p>
+                            <Link href={"/dang-ky"} className="underline font-bold cursor-pointer">Đăng ký tại đây</Link>
+                        </div>
+                        {/* Input form */}
+                        <div className="mt-8 text-lg">
+                            <div className="border-2 w-full rounded-full">
+                                <input
+                                    className="px-6 h-14 w-full border-none outline-none"
+                                    placeholder="Nhập email"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                />
+                            </div>
+                            <div className="border-2 w-full rounded-full mt-5 relative">
+                                <input
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    value={password}
+                                    className="px-6 h-14 w-full border-none outline-none"
+                                    placeholder="Nhập mật khẩu"
+                                    type={isShowPass ? "text" : "password"} />
+                                <div
+                                    onClick={() => hanldeShowHide()}
+                                    className="absolute right-5 top-[30%] cursor-pointer text-2xl">
+                                    {isShowPass ? <BsFillEyeSlashFill /> : <PiEyesBold />}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="mt-5 text-right cursor-pointer underline">
-                        <p>Quên mật khẩu?</p>
-                    </div>
-                    {/* Button */}
-                    <div className="border rounded-full mt-5 bg-econtract text-white btn-transition">
-                        <button
-                            onClick={handleLogin}
-                            className="h-14 text-center w-full cursor-pointer font-bold">ĐĂNG NHẬP</button>
-                    </div>
-                    {/* Hiển thị lỗi */}
-                    {error && (
-                        <p className="mt-3 text-red-500 text-center font-semibold">{error}</p>
-                    )}
-                    {/* Divider */}
-                    <div className="flex items-center mt-8 px-5 opacity-80">
-                        <div className="flex-grow border-t border-econtract"></div>
-                        <span className="px-3 text-sm">đăng nhập với</span>
-                        <div className="flex-grow border-t border-econtract"></div>
-                    </div>
-                    <div className="flex mt-8 justify-center gap-5">
-                        <div className="btn-transition border-2 text-red-500 border-red-500 w-full flex items-center justify-center gap-2 text-xl px-8 py-3 rounded-full cursor-pointer">
-                            <FcGoogle /> Google
+                        <div className="mt-5 text-right cursor-pointer underline">
+                            <p>Quên mật khẩu?</p>
                         </div>
-                        <div className="btn-transition border-2 text-white bg-black w-full flex items-center justify-center gap-2 text-xl px-8 py-3 rounded-full cursor-pointer">
-                            <FaXTwitter /> Twitter
+                        {/* Button */}
+                        <div className="border rounded-full mt-5 bg-econtract text-white btn-transition">
+                            <button
+                                onClick={handleLogin}
+                                className="h-14 text-center w-full cursor-pointer font-bold">ĐĂNG NHẬP</button>
+                        </div>
+                        {/* Divider */}
+                        <div className="flex items-center mt-8 px-5 opacity-80">
+                            <div className="flex-grow border-t border-econtract"></div>
+                            <span className="px-3 text-sm">đăng nhập với</span>
+                            <div className="flex-grow border-t border-econtract"></div>
+                        </div>
+                        <div className="flex mt-8 justify-center gap-5">
+                            <div className="btn-transition border-2 text-red-500 border-red-500 w-full flex items-center justify-center gap-2 text-xl px-8 py-3 rounded-full cursor-pointer">
+                                <FcGoogle /> Google
+                            </div>
+                            <div className="btn-transition border-2 text-white bg-black w-full flex items-center justify-center gap-2 text-xl px-8 py-3 rounded-full cursor-pointer">
+                                <FaXTwitter /> Twitter
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <ActivationModal
+                open={showActivation}
+                onClose={() => setShowActivation(false)}
+                step={step}
+                setStep={setStep}
+                username={username}
+                activeCode={activeCode}
+                setActiveCode={setActiveCode}
+                handleSendEmail={handleSendEmail}
+                handleReActiveAccount={handleReActiveAccount}
+            />
+        </>
+
     )
 }
 
