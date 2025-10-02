@@ -4,10 +4,10 @@ import { useState } from "react";
 import { PiEyesBold } from "react-icons/pi";
 import { BsFillEyeSlashFill } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 import ActivationModal from "../Modal/ActivationModal";
 import { activateAccountService, handleLoginService, resendActivationCodeService } from "@/services/authService";
+import { signIn } from "next-auth/react";
 
 const LoginComponent = () => {
     const [showActivation, setShowActivation] = useState<boolean>(false)
@@ -23,7 +23,6 @@ const LoginComponent = () => {
 
     const handleLogin = async () => {
         const res = await handleLoginService(username, password);
-
         if (res?.error === "NotActivated") {
             setShowActivation(true);
         } else if (res?.error === "WrongInformation") {
@@ -95,7 +94,7 @@ const LoginComponent = () => {
                             </div>
                         </div>
                         <div className="mt-5 text-right cursor-pointer underline">
-                            <p>Quên mật khẩu?</p>
+                            <Link href={'/doi-mat-khau'}>Quên mật khẩu?</Link>
                         </div>
                         {/* Button */}
                         <div className="border rounded-full mt-5 bg-econtract text-white btn-transition">
@@ -106,15 +105,14 @@ const LoginComponent = () => {
                         {/* Divider */}
                         <div className="flex items-center mt-8 px-5 opacity-80">
                             <div className="flex-grow border-t border-econtract"></div>
-                            <span className="px-3 text-sm">đăng nhập với</span>
+                            <span className="px-3 text-sm">đăng nhập nhanh với</span>
                             <div className="flex-grow border-t border-econtract"></div>
                         </div>
                         <div className="flex mt-8 justify-center gap-5">
-                            <div className="btn-transition border-2 text-red-500 border-red-500 w-full flex items-center justify-center gap-2 text-xl px-8 py-3 rounded-full cursor-pointer">
+                            <div
+                                onClick={() => signIn("google", { callbackUrl: "/" })}
+                                className="btn-transition border-2 text-red-500 border-red-500 w-full flex items-center justify-center gap-2 text-xl px-8 py-3 rounded-full cursor-pointer">
                                 <FcGoogle /> Google
-                            </div>
-                            <div className="btn-transition border-2 text-white bg-black w-full flex items-center justify-center gap-2 text-xl px-8 py-3 rounded-full cursor-pointer">
-                                <FaXTwitter /> Twitter
                             </div>
                         </div>
                     </div>

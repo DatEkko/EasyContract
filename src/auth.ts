@@ -3,9 +3,14 @@ import Credentials from "next-auth/providers/credentials"
 import { sendRequest } from "@/library/api";
 import { IUser } from "@/types/next-auth";
 import { isSuccess } from "./library/typeGuard";
+import Google from "next-auth/providers/google";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     providers: [
+        Google({
+            clientId: process.env.GOOGLE_CLIENT_ID!,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+        }),
         Credentials({
             // You can specify which fields should be submitted, by adding keys to the `credentials` object.
             // e.g. domain, username, password, 2FA token, etc.
@@ -62,13 +67,35 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             (session.user as IUser) = token.user;
             return session;
         },
-
         //Kiểm tra xem đăng nhập thành công hay thất bại
-        async signIn({ user }) {
+        async signIn({ user, account }) {
+            // Case login bằng Credentials
             if (user.id === "error" && user.errorType) {
                 return `/auth/login?error=${user.errorType}`;
             }
+
+            // Case login bằng OAuth (Google, Twitter)
+            if (account?.provider === "google" || account?.provider === "twitter") {
+                try {
+                    await sendRequest<IBackendRes<IUser>>({
+                        method: "POST",
+                        url: `${process.env.NEXT_PUBLIC_BE_URL}/auth/oauth`,
+                        body: {
+                            email: user.email,
+                            name: user.name,
+                            provider: account.provider,
+                            providerAccountId: account.providerAccountId,
+                        },
+                    });
+                } catch (err) {
+                    console.error("OAuth user creation failed", err);
+                    return false; // reject login nếu BE lỗi
+                }
+
+                return true;
+            }
+
             return true;
-        }
+        },
     },
 })

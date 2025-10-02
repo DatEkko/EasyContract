@@ -4,6 +4,7 @@ import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
 import NextAuthWrapper from "@/library/NextAuthWrapper";
 import localFont from "next/font/local";
+import { auth } from "@/auth";
 
 export const metadata: Metadata = {
   title: "Easy Contract",
@@ -21,17 +22,18 @@ const roboto = localFont({
   variable: "--font-roboto",
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
   return (
     <html lang="en" className={roboto.variable}>
       <body
       >
         <NextAuthWrapper>
-          <Header />
+          <Header session={session} />
           <div className="pt-20">{children}</div>
           <Footer />
         </NextAuthWrapper>

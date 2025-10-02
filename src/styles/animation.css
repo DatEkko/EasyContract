@@ -21,5 +21,5 @@
 }
 
 .btn-transition:hover {
-  @apply shadow-md brightness-150;
+  @apply shadow-lg scale-101;
 }

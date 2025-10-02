@@ -14,6 +14,6 @@ export default auth((req) => {
 export const config = {
     matcher: [
         // bảo vệ tất cả route trừ public
-        "/((?!api|_next/static|_next/image|favicon.ico|images|logo|dang-ky|xac-thuc|dang-nhap$|$).*)",
+        "/((?!api|_next/static|_next/image|favicon.ico|images|logo|dang-ky|xac-thuc|doi-mat-khau|dang-nhap$|$).*)",
     ],
 }
