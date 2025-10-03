@@ -53,7 +53,7 @@ const Sidebar = ({ open, onClose }: SidebarProps) => {
                     <Link href="/" className={linkClass("/")} onClick={onClose}>
                         Trang Chủ
                     </Link>
-                    <Link href="/hop-dong-mien-phi" className={linkClass("/hop-dong-mien-phi")} onClick={onClose}>
+                    <Link href="/hop-dong" className={linkClass("/hop-dong")} onClick={onClose}>
                         Kho Hợp Đồng
                     </Link>
                     <Link href="/nang-cap-dich-vu" className={linkClass("/nang-cap-dich-vu")} onClick={onClose}>

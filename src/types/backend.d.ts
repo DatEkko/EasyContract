@@ -42,4 +42,32 @@ declare global {
     interface IRegister {
         _id: string;
     }
+
+    interface ITemplateFree {
+        meta: PaginationMeta;
+        results: TemplateItem[];
+    }
+
+    // Thông tin phân trang
+    interface PaginationMeta {
+        current: number;
+        pageSize: number;
+        pages: number;
+        total: number;
+    }
+
+    // Template item
+    interface TemplateItem {
+        _id: string;
+        name: string;
+        description: string;
+    }
+
+    interface ITemplateStructure {
+        _id: string;
+        templateId: string;
+        name: string;
+        description: string;
+        blocks: TemplateBlock[]
+    }
 }

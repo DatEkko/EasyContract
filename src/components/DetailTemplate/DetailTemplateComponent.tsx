@@ -1,7 +1,5 @@
 "use client";
-import { use, useState } from "react";
-import ListTemplate from "@/data/ListTemplate.json";
-import PrivateTemplate from "@/data/PrivateTemplate.json"
+import { useState } from "react";
 import TableRows from "@/components/DetailTemplate/TableRows";
 import { useDetailLogic } from "@/components/DetailTemplate/useDetailLogic";
 import { exportToWord } from "@/utils/exportWord";
@@ -10,25 +8,19 @@ import { emptyPartyInfo, PartyInfo } from "@/components/DetailTemplate/types";
 import { FaRegFileWord } from "react-icons/fa";
 import TableRowsMobile from "@/components/DetailTemplate/TableRowsMobile";
 
-interface DetailPageProps {
-    params: Promise<{ template: string }>;
+interface TemplateProps {
+    data?: ITemplateStructure;
 }
 
-const DetailTemplate = ({ params }: DetailPageProps) => {
-    const { template } = use(params);
-    const currentTemplate = ListTemplate.find((item) => item.id === template) || PrivateTemplate.find((item) => item.id === template);
+const DetailTemplateComponent = ({ data }: TemplateProps) => {
     const [benA, setBenA] = useState<PartyInfo>(emptyPartyInfo);
     const [benB, setBenB] = useState<PartyInfo>(emptyPartyInfo);
 
     const { rows, errors, handleChange, addRow, deleteRow, tongHopDong, validateRows } = useDetailLogic();
 
-    if (!currentTemplate) {
-        return <div>Không tìm thấy hợp đồng với id: {template}</div>;
-    }
-
     return (
         <div className="text-center px-5 md:px-10 text-econtract">
-            <div className="text-3xl md:text-5xl my-10 font-bold">Soạn thảo <span className="block md:inline">{currentTemplate.name.toUpperCase()}</span></div>
+            <div className="text-3xl md:text-5xl my-10 font-bold">Soạn thảo <span className="block md:inline">{data?.name.toLocaleUpperCase()}</span></div>
 
             <div className="flex flex-col lg:flex-row justify-center gap-3 lg:gap-10">
                 <PartyInfoForm label="Bên A - Sử Dụng Dịch Vụ" value={benA} onChange={setBenA} />
@@ -79,8 +71,8 @@ const DetailTemplate = ({ params }: DetailPageProps) => {
                 </button>
                 <button
                     onClick={() => {
-                        if (validateRows()) {
-                            exportToWord(currentTemplate.id, rows, tongHopDong, benA, benB);
+                        if (data && validateRows()) {
+                            exportToWord(data, rows, tongHopDong, benA, benB);
                         }
                     }}
                     className="flex items-center gap-1 px-4 py-2 bg-green-800 text-white rounded cursor-pointer"
@@ -92,4 +84,4 @@ const DetailTemplate = ({ params }: DetailPageProps) => {
     );
 };
 
-export default DetailTemplate;
+export default DetailTemplateComponent;

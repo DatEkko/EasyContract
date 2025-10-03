@@ -27,6 +27,10 @@ const LoginComponent = () => {
             setShowActivation(true);
         } else if (res?.error === "WrongInformation") {
             alert("Sai thông tin đăng nhập");
+        }
+        else if (res?.error) {
+            alert("Lỗi server");
+
         } else if (res?.ok) {
             window.location.href = "/";
             alert("Đăng nhập thành công");

@@ -35,13 +35,13 @@ const Header = ({ session }: { session: Session | null }) => {
                 </div>
 
                 {/* Menu */}
-                <div className="hidden lg:flex lg:items-center gap-12 text-lg relative">
+                <div className="hidden lg:flex lg:items-center gap-12 text-base relative">
                     <Link href="/" className={linkClass("/")}>
                         Trang Chủ
                     </Link>
                     <Link
-                        href="/hop-dong-mien-phi"
-                        className={linkClass("/hop-dong-mien-phi")}
+                        href="/hop-dong"
+                        className={linkClass("/hop-dong")}
                     >
                         Kho Hợp Đồng
                     </Link>

@@ -16,9 +16,9 @@ const Template = ({ item, index }: TemplateProps) => {
             {/* Hình + overlay */}
             <div className="relative w-full h-[200px]">
                 <Image
-                    src={item.image ? `/contractImage/${item.image}` : "/contractImage/default.jpg"}
+                    src={"/contractImage/default.jpg"}
                     fill
-                    alt={item.image ? item.image : "anh-hop-dong"}
+                    alt={"anh-hop-dong"}
                     className="object-cover"
                     unoptimized
                 />

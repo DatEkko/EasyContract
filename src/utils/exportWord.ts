@@ -1,25 +1,17 @@
 import { Document, Packer } from "docx";
 import { saveAs } from "file-saver";
 import { parseTemplate } from "@/utils/parseTemplate";
-import { PartyInfo, RowData, Template } from "@/components/DetailTemplate/types";
-import templatesJson from "@/data/ListTemplateContent.json";
+import { PartyInfo, RowData } from "@/components/DetailTemplate/types";
 
 export const exportToWord = async (
-    templateId: string,
+    data: ITemplateStructure,
     rows: RowData[],
     tongHopDong: number,
     benA: PartyInfo,
     benB: PartyInfo
 ) => {
-    const templates: Template[] = templatesJson as Template[];
-    const template = templates.find((t) => t.id === templateId);
 
-    if (!template) {
-        alert(`Template chưa hỗ trợ: ${templateId}`);
-        return;
-    }
-
-    const children = parseTemplate(template, rows, tongHopDong, benA, benB);
+    const children = parseTemplate(data.blocks, rows, tongHopDong, benA, benB);
 
     const doc = new Document({
         styles: {
@@ -50,5 +42,5 @@ export const exportToWord = async (
     });
 
     const blob = await Packer.toBlob(doc);
-    saveAs(blob, `${templateId}.docx`);
+    saveAs(blob, `${data.templateId}.docx`);
 };

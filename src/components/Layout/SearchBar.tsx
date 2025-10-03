@@ -9,7 +9,7 @@ const SearchBar = () => {
 
     const handleSearch = () => {
         if (searchId.trim() !== "") {
-            router.push(`/${searchId}`)
+            router.push(`/hop-dong/${searchId}`)
         }
     }
 

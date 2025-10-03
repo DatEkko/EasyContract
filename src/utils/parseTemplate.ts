@@ -9,18 +9,24 @@ import {
     makeGeneralPolicy456,
     makeTopPolicy
 } from "@/makeBlock/makeGeneralPolicy";
-import { PartyInfo, RowData, Template, TemplateBlock } from "@/components/DetailTemplate/types";
+import { PartyInfo, RowData, TemplateBlock } from "@/components/DetailTemplate/types";
 
 export function parseTemplate(
-    template: Template,
+    blocks: TemplateBlock[],
     rows: RowData[],
     tongHopDong: number,
     benA: PartyInfo,
     benB: PartyInfo
 ): (Paragraph | Table)[] {
-    if (!template.blocks) return [];
+    if (!blocks || blocks.length === 0) return [
+        new Paragraph({
+            children: [
+                new TextRun({ text: "Hợp đồng này đã bị lỗi. Vui lòng liên hệ qua email: datnhot2002@gmail.com để báo cáo sự cố" }),
+            ],
+        })
+    ];
 
-    return template.blocks.flatMap((block: TemplateBlock) => {
+    return blocks.flatMap((block: TemplateBlock) => {
         switch (block.type) {
             case "header":
                 return [makeHeader(block.title, block.code, block.location, block.date), new Paragraph({ text: "" })];
