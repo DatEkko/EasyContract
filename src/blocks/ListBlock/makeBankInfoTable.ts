@@ -1,8 +1,8 @@
-import { PartyInfo } from "@/components/DetailTemplate/types";
 import {
     Table, TableRow, TableCell, Paragraph, TextRun,
     WidthType, AlignmentType, VerticalAlign
 } from "docx";
+import { PartyInfo } from "../type.block";
 
 const cellMargins = { top: 50, bottom: 50, left: 150 };
 

@@ -3,8 +3,6 @@ import { Table, TableRow, TableCell, Paragraph, TextRun, AlignmentType, WidthTyp
 export const makeHeader = (
     companyName: string,
     soHopDong: string,
-    location: string,
-    date: string
 ) =>
     new Table({
         width: { size: 100, type: WidthType.PERCENTAGE },
@@ -72,7 +70,7 @@ export const makeHeader = (
                             }),
                             new Paragraph({
                                 alignment: AlignmentType.CENTER,
-                                children: [new TextRun({ text: `${location}, ${date}` })],
+                                children: [new TextRun({ text: `TP. Hồ Chí Minh, ngày … tháng … năm 20……` })],
                             }),
                         ],
                     }),
@@ -80,3 +78,17 @@ export const makeHeader = (
             }),
         ],
     });
+
+export const makeTitle = (spacingBefore: number, title: string): Paragraph => {
+    return new Paragraph({
+        alignment: AlignmentType.CENTER,
+        spacing: { before: spacingBefore ?? 0 },
+        children: [
+            new TextRun({
+                text: title ?? "",
+                bold: true,
+                size: 36,
+            }),
+        ],
+    });
+};

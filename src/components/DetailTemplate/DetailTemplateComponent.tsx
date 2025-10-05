@@ -4,9 +4,9 @@ import TableRows from "@/components/DetailTemplate/TableRows";
 import { useDetailLogic } from "@/components/DetailTemplate/useDetailLogic";
 import { exportToWord } from "@/utils/exportWord";
 import PartyInfoForm from "@/components/DetailTemplate/PartyInfoForm";
-import { emptyPartyInfo, PartyInfo } from "@/components/DetailTemplate/types";
 import { FaRegFileWord } from "react-icons/fa";
 import TableRowsMobile from "@/components/DetailTemplate/TableRowsMobile";
+import { emptyPartyInfo, PartyInfo } from "@/blocks/type.block";
 
 interface TemplateProps {
     data?: ITemplateStructure;
@@ -72,7 +72,16 @@ const DetailTemplateComponent = ({ data }: TemplateProps) => {
                 <button
                     onClick={() => {
                         if (data && validateRows()) {
-                            exportToWord(data, rows, tongHopDong, benA, benB);
+                            exportToWord(data, {
+                                rows,
+                                tongHopDong,
+                                partyA: benA,
+                                partyB: benB,
+                                companyName: "Công ty TNHH Hoa Kiểng",
+                                soHopDong: "01/HĐMB/2025",
+                                location: "TP.HCM",
+                                date: "01/01/2025"
+                            });
                         }
                     }}
                     className="flex items-center gap-1 px-4 py-2 bg-green-800 text-white rounded cursor-pointer"

@@ -1,4 +1,26 @@
-import { AlignmentType } from "docx";
+import { Paragraph, Table } from "docx";
+
+export type Field = {
+    key: string;
+    label: string;
+    required?: boolean;
+    group?: string; // để gom field cho Bên A / B
+};
+
+export type BlockDefinition<T extends TemplateBlock = TemplateBlock> = {
+    type: T["type"];
+    name?: string; // với block kiểu "block" cần phân biệt hàm
+    fields: Field[];
+    render: (block: T, data: any) => (Paragraph | Table)[];
+    getFields?: (block: T) => Field[];
+};
+
+export type AnyBlockDefinition =
+    | BlockDefinition<IHeaderBlock>
+    | BlockDefinition<ITitleBlock>
+    | BlockDefinition<IPartyBlock>
+    | BlockDefinition<ISignTableBlock>
+    | BlockDefinition<IGenericBlock>;
 
 export interface PartyInfo {
     tenCongTy: string;
@@ -38,38 +60,35 @@ export interface Template {
 }
 
 export type TemplateBlock =
-    | HeaderBlock
-    | TitleBlock
-    | PartyBlock
-    | GenericBlock
-    | SignTableBlock;
+    | IHeaderBlock
+    | ITitleBlock
+    | IPartyBlock
+    | IGenericBlock
+    | ISignTableBlock;
 
-export interface HeaderBlock {
+export interface IHeaderBlock {
     type: "header";
     title: string;
     code: string;
-    location: string;
-    date: string;
 }
 
-// Title block
-export interface TitleBlock {
+export interface ITitleBlock {
     type: "title";
     text: string;
-    size?: number;
-    bold?: boolean;
-    align?: keyof typeof AlignmentType;
     spacingBefore?: number;
 }
 
-// Party block
-export interface PartyBlock {
+export interface IPartyBlock {
     type: "party";
     role: "A" | "B";
 }
 
+export interface ISignTableBlock {
+    type: "signTable";
+}
+
 // Generic block (ví dụ policy)
-export interface GenericBlock {
+export interface IGenericBlock {
     type: "block";
     name:
     | "makeTopPolicy"
@@ -79,7 +98,5 @@ export interface GenericBlock {
     | "makeGeneralPolicy456";
 }
 
-// Sign table block
-export interface SignTableBlock {
-    type: "signTable";
-}
+
+

@@ -1,8 +1,8 @@
-import { PartyInfo, RowData } from "@/components/DetailTemplate/types";
 import { Paragraph, TextRun, AlignmentType, Table, WidthType } from "docx";
 import { makeRows } from "./makeRows";
 import { makeBankInfoTable } from "./makeBankInfoTable";
-import { numberToVietnamese } from "../utils/numberToVietnamese";
+import { numberToVietnamese } from "../../utils/numberToVietnamese";
+import { PartyInfo, RowData } from "../type.block";
 
 const makeClause = (text: string) =>
     new Paragraph({

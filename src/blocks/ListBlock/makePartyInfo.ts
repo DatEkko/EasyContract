@@ -1,5 +1,5 @@
-import { PartyInfo } from "@/components/DetailTemplate/types";
 import { Table, TableRow, TableCell, Paragraph, TextRun, WidthType, AlignmentType } from "docx";
+import { PartyInfo } from "../type.block";
 
 export const makePartyInfo = (title: string, info: PartyInfo) => {
     const cellMargin = { top: 95, bottom: 50, left: 100 };
@@ -105,7 +105,7 @@ export const makePartyInfo = (title: string, info: PartyInfo) => {
                     new TableCell({
                         margins: cellMargin,
                         width: { size: 67, type: WidthType.PERCENTAGE },
-                        children: [new Paragraph(info.soTaiKhoan + info.tenNganHang)],
+                        children: [new Paragraph(info.soTaiKhoan + " " + info.tenNganHang)],
                     }),
                 ],
             }),

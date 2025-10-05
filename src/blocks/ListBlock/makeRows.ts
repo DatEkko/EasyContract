@@ -1,5 +1,5 @@
-import { RowData } from "@/components/DetailTemplate/types";
 import { TableRow, TableCell, Paragraph, AlignmentType, TextRun, WidthType, VerticalAlign } from "docx";
+import { RowData } from "../type.block";
 
 const cellMargin = { top: 50, bottom: 50 };
 

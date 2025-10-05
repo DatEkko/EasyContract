@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { PartyInfo } from "@/components/DetailTemplate/types";
 import companies from "@/data/ListCompany.json";
+import { PartyInfo } from "@/blocks/type.block";
 
 interface PartyInfoFormProps {
     label: string;

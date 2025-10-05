@@ -1,5 +1,5 @@
-import { PartyInfo } from "@/components/DetailTemplate/types";
 import { Table, TableRow, TableCell, Paragraph, TextRun, AlignmentType, WidthType } from "docx";
+import { PartyInfo } from "../type.block";
 
 export const makeSignTable = (benA: PartyInfo, benB: PartyInfo) => {
     return new Table({
