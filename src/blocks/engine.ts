@@ -1,23 +1,21 @@
 import { Paragraph, Table } from "docx";
-import { AnyBlockDefinition, BlockDefinition, TemplateBlock } from "./type.block";
+import { AnyBlockDefinition, BlockDefinition, Field, IDataFields, TemplateBlock } from "./type.block";
 import { isGenericBlock, isMatchingDef } from "@/library/typeGuard";
+import { blocksRegistry } from "./blocksRegistry";
 
-// export function collectFields(template: any[], registry: BlockDefinition[]): Field[] {
-//     const allFields = template.flatMap(block => {
-//         const def = registry.find(r => r.type === block.type && (!r.name || r.name === block.name));
-//         return def ? def.fields : [];
-//     });
+export const collectFields = (template: TemplateBlock[]): Field[] => {
+    const allFields = template.flatMap(block => {
+        const def = blocksRegistry.find(d => isMatchingDef(d, block));
+        return def?.fields ?? [];
+    });
 
-//     const unique: Field[] = [];
-//     for (const f of allFields) {
-//         if (!unique.find(u => u.key === f.key)) unique.push(f);
-//     }
-//     return unique;
-// }
+    // Lọc trùng key (Map để O(n))
+    return Array.from(new Map(allFields.map(f => [f.key, f])).values());
+};
 
 export const parseTemplate = (
     blocks: TemplateBlock[],
-    data: any,
+    data: IDataFields,
     registry: AnyBlockDefinition[]
 ): (Paragraph | Table)[] =>
     blocks.flatMap((block) => {

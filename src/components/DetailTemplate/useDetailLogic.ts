@@ -1,5 +1,5 @@
+import { RowData } from "@/blocks/type.block";
 import { useState } from "react";
-import { RowData } from "./types";
 
 export const useDetailLogic = () => {
     const [errors, setErrors] = useState<Record<string, string>>({});

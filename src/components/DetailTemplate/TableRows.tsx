@@ -1,4 +1,4 @@
-import { RowData } from "./types";
+import { RowData } from "@/blocks/type.block";
 import units from "@/data/Unit.json";
 import { FaRegTrashAlt } from "react-icons/fa";
 

@@ -4,8 +4,11 @@ import { makeHeader, makeTitle } from "./ListBlock/makeHeader";
 import { makePartyInfo } from "./ListBlock/makePartyInfo";
 import { makeSignTable } from "./ListBlock/makeSignTable";
 import {
-    makeGeneralPolicy12, makeGeneralPolicy3NoDeposit,
-    makeGeneralPolicy3WithDeposit, makeGeneralPolicy456, makeTopPolicy
+    makeGeneralPolicy12,
+    makeGeneralPolicy3NoDeposit,
+    makeGeneralPolicy3WithDeposit,
+    makeGeneralPolicy456,
+    makeTopPolicy,
 } from "./ListBlock/makeGeneralPolicy";
 
 // Header
@@ -15,24 +18,24 @@ export const HeaderBlock: BlockDefinition = {
         { key: "companyName", label: "Tên công ty", required: true },
         { key: "soHopDong", label: "Số hợp đồng", required: true },
     ],
-    render: (_block, _data) => [
-        makeHeader(
-            _data.companyName,
-            _data.soHopDong,
-        ),
-        new Paragraph({ text: "" }),
-    ],
+    render: (_block, _data) => {
+        if (!_data.companyName || !_data.soHopDong) {
+            return [new Paragraph({ text: "⚠️ Thiếu thông tin header" })];
+        }
+        return [
+            makeHeader(_data.companyName, _data.soHopDong),
+            new Paragraph({ text: "" }),
+        ];
+    },
 };
 
-//Title
+// Title
 export const TitleBlock: BlockDefinition<ITitleBlock> = {
     type: "title",
-    fields: [
-        { key: "text", label: "Tiêu đề", required: true },
+    fields: [],
+    render: (_block) => [
+        makeTitle(_block.spacingBefore ?? 0, _block.text),
     ],
-    render: (_block, _data) => [
-        makeTitle(_block.spacingBefore ?? 0, _block.text)
-    ]
 };
 
 // Party
@@ -41,9 +44,12 @@ export const PartyBlock: BlockDefinition<IPartyBlock> = {
     fields: [],
     render: (_block, _data) => {
         const info = _block.role === "A" ? _data.partyA : _data.partyB;
+        if (!info) {
+            return [new Paragraph({ text: `⚠️ Thiếu thông tin bên ${_block.role}` })];
+        }
         return [
             makePartyInfo(`Bên ${_block.role}`, info),
-            new Paragraph({ text: "" })
+            new Paragraph({ text: "" }),
         ];
     },
     getFields: (_block) => [
@@ -51,9 +57,9 @@ export const PartyBlock: BlockDefinition<IPartyBlock> = {
             key: _block.role === "A" ? "partyA" : "partyB",
             label: `Thông tin bên ${_block.role}`,
             required: true,
-            group: _block.role
-        }
-    ]
+            group: _block.role,
+        },
+    ],
 };
 
 // SignTable
@@ -63,7 +69,12 @@ export const SignTableBlock: BlockDefinition = {
         { key: "partyA", label: "Thông tin bên A", required: true },
         { key: "partyB", label: "Thông tin bên B", required: true },
     ],
-    render: (_block, _data) => [new Paragraph({ text: "" }), makeSignTable(_data.partyA, _data.partyB)],
+    render: (_block, _data) => {
+        if (!_data.partyA || !_data.partyB) {
+            return [new Paragraph({ text: "⚠️ Thiếu thông tin chữ ký" })];
+        }
+        return [new Paragraph({ text: "" }), makeSignTable(_data.partyA, _data.partyB)];
+    },
 };
 
 // Policy blocks
@@ -79,29 +90,37 @@ export const Policy12Block: BlockDefinition = {
     name: "makeGeneralPolicy12",
     fields: [
         { key: "rows", label: "Danh sách sản phẩm/dịch vụ", required: true },
-        { key: "tongHopDong", label: "Tổng hợp đồng", required: true },
     ],
-    render: (_block, _data) => makeGeneralPolicy12(_data.rows, _data.tongHopDong),
+    render: (_block, _data) => {
+        if (!_data.rows || !_data.tongHopDong) {
+            return [new Paragraph({ text: "⚠️ Thiếu dữ liệu sản phẩm/dịch vụ" })];
+        }
+        return makeGeneralPolicy12(_data.rows, _data.tongHopDong);
+    },
 };
 
 export const Policy3WithDepositBlock: BlockDefinition = {
     type: "block",
     name: "makeGeneralPolicy3WithDeposit",
-    fields: [
-        { key: "tongHopDong", label: "Tổng hợp đồng", required: true },
-        { key: "partyB", label: "Thông tin bên B", required: true },
-    ],
-    render: (_block, _data) => makeGeneralPolicy3WithDeposit(_data.tongHopDong, _data.partyB),
+    fields: [],
+    render: (_block, _data) => {
+        if (!_data.tongHopDong || !_data.beneficiary) {
+            return [new Paragraph({ text: "⚠️ Thiếu dữ liệu cho chính sách đặt cọc" })];
+        }
+        return makeGeneralPolicy3WithDeposit(_data.tongHopDong, _data.beneficiary);
+    },
 };
 
 export const Policy3NoDepositBlock: BlockDefinition = {
     type: "block",
     name: "makeGeneralPolicy3NoDeposit",
-    fields: [
-        { key: "tongHopDong", label: "Tổng hợp đồng", required: true },
-        { key: "partyB", label: "Thông tin bên B", required: true },
-    ],
-    render: (_block, _data) => makeGeneralPolicy3NoDeposit(_data.tongHopDong, _data.partyB),
+    fields: [],
+    render: (_block, _data) => {
+        if (!_data.tongHopDong || !_data.beneficiary) {
+            return [new Paragraph({ text: "⚠️ Thiếu dữ liệu cho chính sách không đặt cọc" })];
+        }
+        return makeGeneralPolicy3NoDeposit(_data.tongHopDong, _data.beneficiary);
+    },
 };
 
 export const Policy456Block: BlockDefinition = {
@@ -111,6 +130,7 @@ export const Policy456Block: BlockDefinition = {
     render: () => makeGeneralPolicy456(),
 };
 
+// Registry
 export const blocksRegistry: AnyBlockDefinition[] = [
     HeaderBlock,
     TitleBlock,

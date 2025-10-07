@@ -34,7 +34,7 @@ const PartyInfoForm = ({ label, value, onChange }: PartyInfoFormProps) => {
     };
 
     return (
-        <div className="border-4 rounded-lg p-5 shadow mb-6 text-left w-full">
+        <div className="p-5 text-left w-full">
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl md:text-2xl font-bold">{label}</h2>
             </div>

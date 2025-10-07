@@ -1,4 +1,4 @@
-import { RowData } from "./types";
+import { RowData } from "@/blocks/type.block";
 import units from "@/data/Unit.json";
 import { FaRegTrashAlt } from "react-icons/fa";
 
@@ -91,7 +91,7 @@ const TableRowsMobile = ({ rows, errors, handleChange, deleteRow }: Props) => {
                         {/* Xóa */}
                         <button
                             onClick={() => deleteRow(row.id)}
-                            className="mt-3 ml-auto px-3 py-2 bg-red-500 text-white rounded flex items-center gap-2"
+                            className="mt-3 ml-auto px-3 py-2 bg-red-500 text-white rounded flex items-center gap-2 cursor-pointer"
                         >
                             <FaRegTrashAlt />
                         </button>
