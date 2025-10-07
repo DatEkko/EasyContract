@@ -1,5 +1,5 @@
 import { Paragraph, Table } from "docx";
-import { AnyBlockDefinition, BlockDefinition, Field, IDataFields, TemplateBlock } from "./type.block";
+import { BlockDefinition, Field, IDataFields, TemplateBlock } from "./type.block";
 import { isGenericBlock, isMatchingDef } from "@/library/typeGuard";
 import { blocksRegistry } from "./blocksRegistry";
 
@@ -16,10 +16,9 @@ export const collectFields = (template: TemplateBlock[]): Field[] => {
 export const parseTemplate = (
     blocks: TemplateBlock[],
     data: IDataFields,
-    registry: AnyBlockDefinition[]
 ): (Paragraph | Table)[] =>
     blocks.flatMap((block) => {
-        for (const def of registry) {
+        for (const def of blocksRegistry) {
             if (isMatchingDef(def, block)) {
                 return (def as BlockDefinition<typeof block>).render(block, data);
             }

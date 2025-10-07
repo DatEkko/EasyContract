@@ -1,11 +1,10 @@
-import { blocksRegistry } from "@/blocks/blocksRegistry";
 import { parseTemplate } from "@/blocks/engine";
 import { IDataFields } from "@/blocks/type.block";
 import { Document, Packer } from "docx";
 import { saveAs } from "file-saver";
 
 export const exportToWord = async (template: ITemplateStructure, data: IDataFields) => {
-    const children = parseTemplate(template.blocks, data, blocksRegistry);
+    const children = parseTemplate(template.blocks, data);
 
     const doc = new Document({
         styles: {
