@@ -60,9 +60,16 @@ export const sendRequest = async <T>(props: IRequest): Promise<ApiResponse<T>> =
 
 export const sendAuRequest = async <T>(props: IRequest): Promise<ApiResponse<T>> => {
     const session = await auth();
-    const token = session?.user?.access_token;
+    const token = session?.user?.access_token || session?.access_token;
 
-    if (!token) throw new Error('Not authenticated');
+    if (!token) {
+        return {
+            success: false,
+            statusCode: 401,
+            message: 'Not authenticated',
+            error: 'Unauthorized',
+        };
+    }
 
     return sendRequest<T>({
         ...props,

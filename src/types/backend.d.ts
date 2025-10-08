@@ -4,7 +4,7 @@ export { };
 declare global {
     interface IRequest {
         url: string;
-        method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD'; // cụ thể hơn thay vì string
+        method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD';
         body?: Record<string, unknown>;
         queryParams?: Record<string, string | number | boolean | undefined>;
         useCredentials?: boolean;
@@ -69,5 +69,9 @@ declare global {
         name: string;
         description: string;
         blocks: TemplateBlock[]
+    }
+
+    interface IPostRes {
+        _id: string;
     }
 }

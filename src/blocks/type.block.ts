@@ -46,6 +46,7 @@ export type AnyBlockDefinition =
     | BlockDefinition<IGenericBlock>;
 
 export interface PartyInfo {
+    _id?: string;
     tenCongTy: string;
     daiDien: string;
     chucVu: string;
@@ -54,6 +55,7 @@ export interface PartyInfo {
     maSoThue: string;
     diaChi: string;
     SDT: string;
+    name?: string;
 }
 
 export const emptyPartyInfo: PartyInfo = {

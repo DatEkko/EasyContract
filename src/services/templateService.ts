@@ -1,3 +1,4 @@
+"use server"
 import { sendRequest } from "@/library/api";
 
 export const getListTemplateFreeService = async () => {
@@ -15,3 +16,4 @@ export const getTemplateFreeByIdService = async (id: string) => {
     });
     return res;
 };
+

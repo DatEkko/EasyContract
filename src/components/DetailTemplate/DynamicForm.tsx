@@ -1,5 +1,5 @@
 "use client";
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import PartyInfoForm from "@/components/DetailTemplate/PartyInfoForm";
 import TableRows from "@/components/DetailTemplate/TableRows";
 import TableRowsMobile from "@/components/DetailTemplate/TableRowsMobile";
@@ -11,6 +11,7 @@ import {
     PartyKeys,
     PartyInfo,
 } from "@/blocks/type.block";
+import { deletePartnerService, getPartnerService } from "@/services/partnerService";
 
 interface DynamicFormProps {
     formData: IDataFields;
@@ -31,6 +32,26 @@ const DynamicForm = ({
     handleChange,
     deleteRow,
 }: DynamicFormProps) => {
+    const [listPartner, setListPartner] = useState<PartyInfo[]>([]);
+    const handleGetPartner = async () => {
+        const res = await getPartnerService();
+        if (res.success && res.data?.data) {
+            setListPartner(res.data.data);
+        }
+    };
+    const handleDeletePartner = async (id: string) => {
+        if (!confirm("Bạn có chắc muốn xóa công ty này?")) return;
+        const res = await deletePartnerService(id);
+        if (res.success) {
+            alert("Xóa thành công");
+            await handleGetPartner();
+        } else {
+            alert(res.error || "Xóa thất bại");
+        }
+    };
+    useEffect(() => {
+        handleGetPartner();
+    }, []);
 
     // Hàm cập nhật chung, đảm bảo nếu party đang là beneficiary sẽ cập nhật luôn
     const updateField = <K extends keyof IDataFields>(
@@ -55,6 +76,9 @@ const DynamicForm = ({
                 label="Bên A - Sử Dụng Dịch Vụ"
                 value={formData.partyA ?? emptyPartyInfo}
                 onChange={(val) => updateField("partyA", val)}
+                listPartner={listPartner}
+                onDeletePartner={handleDeletePartner}
+                refreshPartners={handleGetPartner}
             />
         ),
         partyB: (field) => (
@@ -63,6 +87,9 @@ const DynamicForm = ({
                 label="Bên B - Cung Cấp Dịch Vụ"
                 value={formData.partyB ?? emptyPartyInfo}
                 onChange={(val) => updateField("partyB", val)}
+                listPartner={listPartner}
+                onDeletePartner={handleDeletePartner}
+                refreshPartners={handleGetPartner}
             />
         ),
         rows: (field) => (
