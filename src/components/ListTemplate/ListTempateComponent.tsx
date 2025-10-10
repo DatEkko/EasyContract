@@ -1,5 +1,6 @@
 'use client';
 import Template from "@/components/ListTemplate/Template";
+import { ITemplateFree } from "@/services/type.service";
 import { useRouter } from 'next/navigation';
 
 interface ListTemplateComponentProps {

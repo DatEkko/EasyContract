@@ -1,5 +1,6 @@
 import { signIn } from "next-auth/react";
 import { sendRequest } from "@/library/api";
+import { IPostRes } from "./type.service";
 
 export type ChangePass = {
     code: string,
@@ -18,7 +19,7 @@ export const handleLoginService = async (username: string, password: string) => 
 };
 
 export const handleRegisterService = async (email: string, password: string, name: string) => {
-    const res = await sendRequest<IBackendRes<IRegister>>({
+    const res = await sendRequest<IBackendRes<IPostRes>>({
         method: "POST",
         url: `${process.env.NEXT_PUBLIC_BE_URL}/auth/register`,
         body: { email, password, name },
@@ -27,7 +28,7 @@ export const handleRegisterService = async (email: string, password: string, nam
 };
 
 export const resendActivationCodeService = async (userEmail: string) => {
-    const res = await sendRequest<IBackendRes<IRegister>>({
+    const res = await sendRequest<IBackendRes<IPostRes>>({
         url: `${process.env.NEXT_PUBLIC_BE_URL}/auth/retry-active`,
         method: "POST",
         body: { userEmail },
@@ -36,7 +37,7 @@ export const resendActivationCodeService = async (userEmail: string) => {
 };
 
 export const activateAccountService = async (_id: string, code: string) => {
-    const res = await sendRequest<IBackendRes<IRegister>>({
+    const res = await sendRequest<IBackendRes<IPostRes>>({
         url: `${process.env.NEXT_PUBLIC_BE_URL}/auth/active-account`,
         method: "POST",
         body: { _id, code },
@@ -45,7 +46,7 @@ export const activateAccountService = async (_id: string, code: string) => {
 };
 
 export const sendActivationCodeForChangePasswordService = async (userEmail: string) => {
-    const res = await sendRequest<IBackendRes<IRegister>>({
+    const res = await sendRequest<IBackendRes<IPostRes>>({
         url: `${process.env.NEXT_PUBLIC_BE_URL}/auth/retry-password`,
         method: "POST",
         body: { userEmail },
@@ -54,7 +55,7 @@ export const sendActivationCodeForChangePasswordService = async (userEmail: stri
 };
 
 export const changePasswordService = async (data: ChangePass) => {
-    const res = await sendRequest<IBackendRes<IRegister>>({
+    const res = await sendRequest<IBackendRes<IPostRes>>({
         url: `${process.env.NEXT_PUBLIC_BE_URL}/auth/change-password`,
         method: "POST",
         body: {

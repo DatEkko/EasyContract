@@ -1,5 +1,6 @@
 "use server"
 import { sendRequest } from "@/library/api";
+import { ITemplateFree, ITemplateStructure } from "./type.service";
 
 export const getListTemplateFreeService = async () => {
     const res = await sendRequest<IBackendRes<ITemplateFree>>({

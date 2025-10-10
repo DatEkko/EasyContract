@@ -1,5 +1,6 @@
 import { parseTemplate } from "@/blocks/engine";
 import { IDataFields } from "@/blocks/type.block";
+import { ITemplateStructure } from "@/services/type.service";
 import { Document, Packer } from "docx";
 import { saveAs } from "file-saver";
 

@@ -8,8 +8,6 @@ export interface IDataFields {
     // có thể mở rộng bao nhiêu party cũng được
     partyA?: PartyInfo;
     partyB?: PartyInfo;
-    partyC?: PartyInfo;
-    partyD?: PartyInfo;
 
     // Người thụ hưởng
     beneficiary?: PartyInfo;

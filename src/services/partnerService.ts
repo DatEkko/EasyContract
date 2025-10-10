@@ -2,6 +2,7 @@
 import { auth } from "@/auth";
 import { PartyInfo } from "@/blocks/type.block";
 import { sendAuRequest } from "@/library/api";
+import { IPostRes } from "./type.service";
 
 export const createPartnerService = async (data: PartyInfo) => {
     const session = await auth();
