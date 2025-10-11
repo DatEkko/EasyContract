@@ -4,7 +4,7 @@ export { };
 declare global {
     interface IRequest {
         url: string;
-        method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD';
+        method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'PATCH';
         body?: Record<string, unknown>;
         queryParams?: Record<string, string | number | boolean | undefined>;
         useCredentials?: boolean;

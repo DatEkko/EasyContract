@@ -1,7 +1,7 @@
 import { RowData } from "@/blocks/type.block";
 import { useState } from "react";
 
-export const useDetailLogic = () => {
+export const useRowsLogic = () => {
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [rows, setRows] = useState<RowData[]>([
         { id: crypto.randomUUID(), ten: "", soLuong: "", donViTinh: "", soTien: "", ghiChu: "" },
@@ -51,7 +51,6 @@ export const useDetailLogic = () => {
         0
     );
 
-    // ✅ validate toàn bộ các dòng
     const validateRows = () => {
         const newErrors: Record<string, string> = {};
 
@@ -66,5 +65,5 @@ export const useDetailLogic = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    return { rows, errors, handleChange, addRow, deleteRow, tongHopDong, validateRows };
+    return { rows, setRows, errors, handleChange, addRow, deleteRow, tongHopDong, validateRows };
 };

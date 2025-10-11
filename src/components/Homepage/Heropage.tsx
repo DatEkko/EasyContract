@@ -16,7 +16,7 @@ const HeroPage = () => {
 
             {/* CTA buttons */}
             <div className="flex flex-col md:flex-row gap-4">
-                <Link href={"/hop-dong-mien-phi"}>
+                <Link href={"/hop-dong"}>
                     <button className="bg-blue-600 text-white px-6 py-3 rounded-2xl text-lg font-semibold hover:bg-blue-700 transition cursor-pointer">
                         🚀 Dùng thử miễn phí
                     </button>

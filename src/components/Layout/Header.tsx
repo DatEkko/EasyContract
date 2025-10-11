@@ -75,6 +75,12 @@ const Header = ({ session }: { session: Session | null }) => {
                             </button>
                             {dropdown && (
                                 <div className="absolute right-0 top-full w-40 bg-white text-black rounded-lg shadow-lg overflow-hidden cursor-pointer">
+                                    <Link
+                                        href={"/lich-su"}
+                                        className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-base text-econtract cursor-pointer"
+                                    >
+                                        Lịch sử
+                                    </Link>
                                     <button
                                         onClick={() => signOut()}
                                         className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-base text-red-500 cursor-pointer"

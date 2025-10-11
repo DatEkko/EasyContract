@@ -29,3 +29,21 @@ export interface ITemplateStructure extends TemplateItem {
     templateId: string;
     blocks: TemplateBlock[]
 }
+
+//History item
+export interface IListHistory {
+    meta: PaginationMeta;
+    results: HistoryItem[];
+}
+
+export interface HistoryItem {
+    _id: string;
+    name: string;
+    createdAt: string;
+}
+
+export interface IGetHistory extends ICreateHistory {
+    _id: string;
+    createdAt: string;
+    updatedAt: string;
+}

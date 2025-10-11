@@ -3,7 +3,6 @@ import { Paragraph, Table } from "docx";
 export interface IDataFields {
     companyName?: string;
     soHopDong?: string;
-    title?: string;
 
     // có thể mở rộng bao nhiêu party cũng được
     partyA?: PartyInfo;
