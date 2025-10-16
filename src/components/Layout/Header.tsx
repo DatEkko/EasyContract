@@ -11,7 +11,6 @@ import { Session } from "next-auth";
 const Header = ({ session }: { session: Session | null }) => {
     const pathname = usePathname();
     const [open, setOpen] = useState(false);
-    const [dropdown, setDropdown] = useState(false);
 
     const linkClass = (path: string) =>
         `transition ${pathname === path ? "text-yellow-300" : "hover:text-yellow-200"
@@ -63,32 +62,24 @@ const Header = ({ session }: { session: Session | null }) => {
                             Đăng Nhập
                         </Link>
                     ) : (
-                        <div
-                            onMouseEnter={() => setDropdown(true)}
-                            onMouseLeave={() => setDropdown(false)}
-                            className="relative"
-                        >
-                            <button
-                                className="border-2 py-2 px-4 rounded-3xl cursor-pointer"
-                            >
+                        <div className="relative group ">
+                            <button className="border-2 py-2 px-4 rounded-3xl cursor-pointer">
                                 Xin chào, {session.user?.name || session.user?.email}
                             </button>
-                            {dropdown && (
-                                <div className="absolute right-0 top-full w-40 bg-white text-black rounded-lg shadow-lg overflow-hidden cursor-pointer">
-                                    <Link
-                                        href={"/lich-su"}
-                                        className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-base text-econtract cursor-pointer"
-                                    >
-                                        Lịch sử
-                                    </Link>
-                                    <button
-                                        onClick={() => signOut()}
-                                        className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-base text-red-500 cursor-pointer"
-                                    >
-                                        Đăng xuất
-                                    </button>
-                                </div>
-                            )}
+                            <div className="absolute overflow-hidden right-0 top-full mt-2 w-40 bg-white text-black rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                <Link href={"/yeu-thich"} className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-econtract">
+                                    Mẫu yêu thích
+                                </Link>
+                                <Link href={"/lich-su"} className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-econtract">
+                                    Lịch sử
+                                </Link>
+                                <button
+                                    onClick={() => signOut()}
+                                    className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-red-500 cursor-pointer"
+                                >
+                                    Đăng xuất
+                                </button>
+                            </div>
                         </div>
                     )}
                 </div>

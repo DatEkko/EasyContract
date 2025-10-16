@@ -23,6 +23,7 @@ export interface TemplateItem {
     _id: string;
     name: string;
     description: string;
+    isFavorite: boolean;
 }
 
 export interface ITemplateStructure extends TemplateItem {
